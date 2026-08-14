@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import os from 'os';
 
 export interface DbUser {
   srn: string;
@@ -9,24 +10,24 @@ export interface DbUser {
   salt: string;
   name: string;
   department: string;
-  branch?: string;
+  branch: string;
   semester: number;
-  hackathon_count: number;
-  github_url: string;
-  photo_url: string;
-  interests: string[];
-  bio?: string;
-  skills?: string[];
-  campus?: 'RR Campus' | 'EC Campus';
+  campus: 'RR Campus' | 'EC Campus';
   email?: string;
   phone?: string;
-  looking_for_team?: boolean;
+  photo_url?: string;
+  hackathon_count: number;
+  github_url?: string;
+  interests?: string[];
+  skills?: string[];
+  bio?: string;
+  looking_for_team: boolean;
   preferred_roles?: string[];
   created_at: string;
   updated_at?: string;
 }
 
-export interface DbPostComment {
+export interface DbComment {
   id: string;
   author_srn: string;
   author_name: string;
@@ -44,12 +45,12 @@ export interface DbPost {
   author_semester: number;
   body: string;
   hashtags: string[];
-  created_at: string;
-  likes_count: number;
-  liked_by: string[];
   looking_for_team: boolean;
+  likes_count: number;
+  liked_by: string[]; // List of SRNs
   comments_count: number;
-  comments: DbPostComment[];
+  comments: DbComment[];
+  created_at: string;
 }
 
 export interface DbInvite {
@@ -83,38 +84,74 @@ export interface DatabaseSchema {
   sessions: DbSession[];
 }
 
-const DB_DIR = path.resolve(process.cwd(), 'data');
-const DB_FILE = path.join(DB_DIR, 'db.json');
+const DEFAULT_INITIAL_DB: DatabaseSchema = {
+  users: [
+    {
+      srn: 'PES1UG25CS698',
+      prn: 'PES1202504729',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'SUFIYAN TATAGAR',
+      department: 'Computer Science and Engineering',
+      branch: 'CSE',
+      semester: 3,
+      campus: 'RR Campus',
+      email: 'sufiyantatagar490@gmail.com',
+      phone: '8050895979',
+      photo_url: '',
+      hackathon_count: 3,
+      github_url: '',
+      interests: ['Frontend', 'Backend'],
+      skills: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+      bio: 'Full Stack developer eager to build innovative solutions for SIH 2026.',
+      looking_for_team: true,
+      preferred_roles: ['Full Stack Developer'],
+      created_at: '2026-08-14T20:35:30.654Z',
+      updated_at: '2026-08-14T20:35:54.679Z',
+    },
+  ],
+  posts: [],
+  invites: [],
+  sessions: [],
+};
+
+// In-memory caching for serverless environments
+let memoryDb: DatabaseSchema = JSON.parse(JSON.stringify(DEFAULT_INITIAL_DB));
+
+function getDbFilePath(): string {
+  try {
+    const localDataDir = path.resolve(process.cwd(), 'data');
+    const localDbFile = path.join(localDataDir, 'db.json');
+    if (fs.existsSync(localDbFile)) {
+      return localDbFile;
+    }
+  } catch {
+    // Ignore cwd resolution errors in restricted environments
+  }
+  return path.join(os.tmpdir(), 'pesquad_db.json');
+}
 
 function ensureDbFile(): DatabaseSchema {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
-  }
-
-  if (!fs.existsSync(DB_FILE)) {
-    const initialDb: DatabaseSchema = {
-      users: [],
-      posts: [],
-      invites: [],
-      sessions: [],
-    };
-    fs.writeFileSync(DB_FILE, JSON.stringify(initialDb, null, 2), 'utf-8');
-    return initialDb;
-  }
+  const dbFile = getDbFilePath();
+  const dbDir = path.dirname(dbFile);
 
   try {
-    const content = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(content);
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+
+    if (!fs.existsSync(dbFile)) {
+      fs.writeFileSync(dbFile, JSON.stringify(DEFAULT_INITIAL_DB, null, 2), 'utf-8');
+      memoryDb = JSON.parse(JSON.stringify(DEFAULT_INITIAL_DB));
+      return memoryDb;
+    }
+
+    const content = fs.readFileSync(dbFile, 'utf-8');
+    memoryDb = JSON.parse(content);
+    return memoryDb;
   } catch (error) {
-    console.error('Error reading db.json, creating fallback backup', error);
-    const fallbackDb: DatabaseSchema = {
-      users: [],
-      posts: [],
-      invites: [],
-      sessions: [],
-    };
-    fs.writeFileSync(DB_FILE, JSON.stringify(fallbackDb, null, 2), 'utf-8');
-    return fallbackDb;
+    // Fallback to memoryDb if file system is read-only
+    return memoryDb;
   }
 }
 
@@ -124,10 +161,19 @@ export class Database {
   }
 
   private static write(data: DatabaseSchema): void {
-    ensureDbFile();
-    const tempFile = DB_FILE + '.tmp';
-    fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8');
-    fs.renameSync(tempFile, DB_FILE);
+    memoryDb = data;
+    try {
+      const dbFile = getDbFilePath();
+      const dbDir = path.dirname(dbFile);
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+      const tempFile = dbFile + '.tmp';
+      fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8');
+      fs.renameSync(tempFile, dbFile);
+    } catch {
+      // Memory state persists within the serverless container instance
+    }
   }
 
   // Password Security Helpers
@@ -211,8 +257,8 @@ export class Database {
       expiresAt,
     };
 
-    // Remove expired sessions
-    db.sessions = db.sessions.filter((s) => new Date(s.expiresAt).getTime() > now.getTime());
+    // Clean expired sessions
+    db.sessions = db.sessions.filter((s) => new Date(s.expiresAt) > now);
     db.sessions.push(session);
     this.write(db);
     return session;
@@ -223,7 +269,7 @@ export class Database {
     const session = db.sessions.find((s) => s.token === token);
     if (!session) return undefined;
 
-    if (new Date(session.expiresAt).getTime() < Date.now()) {
+    if (new Date(session.expiresAt) <= new Date()) {
       this.deleteSession(token);
       return undefined;
     }
@@ -236,7 +282,7 @@ export class Database {
     this.write(db);
   }
 
-  // Posts
+  // Posts & Community Feed
   static getPosts(): DbPost[] {
     return this.read().posts.sort(
       (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -247,17 +293,34 @@ export class Database {
     return this.read().posts.find((p) => p.id === id);
   }
 
-  static createPost(post: Omit<DbPost, 'id' | 'created_at' | 'likes_count' | 'liked_by' | 'comments_count' | 'comments'>): DbPost {
+  static createPost(data: {
+    author_srn: string;
+    author_name: string;
+    author_photo: string;
+    author_dept: string;
+    author_semester: number;
+    body: string;
+    hashtags: string[];
+    looking_for_team: boolean;
+  }): DbPost {
     const db = this.read();
     const newPost: DbPost = {
-      ...post,
       id: 'post-' + Date.now() + '-' + crypto.randomBytes(4).toString('hex'),
-      created_at: new Date().toISOString(),
+      author_srn: data.author_srn.toUpperCase(),
+      author_name: data.author_name,
+      author_photo: data.author_photo,
+      author_dept: data.author_dept,
+      author_semester: data.author_semester,
+      body: data.body,
+      hashtags: data.hashtags.map((h) => h.toLowerCase()),
+      looking_for_team: data.looking_for_team,
       likes_count: 0,
       liked_by: [],
       comments_count: 0,
       comments: [],
+      created_at: new Date().toISOString(),
     };
+
     db.posts.unshift(newPost);
     this.write(db);
     return newPost;
@@ -267,78 +330,101 @@ export class Database {
     const db = this.read();
     const post = db.posts.find((p) => p.id === postId);
     if (!post) {
-      throw new Error(`Post ${postId} not found`);
+      throw new Error(`Post with ID ${postId} not found`);
     }
 
-    const upperSrn = userSrn.toUpperCase();
-    const likedIndex = post.liked_by.indexOf(upperSrn);
-    if (likedIndex >= 0) {
-      post.liked_by.splice(likedIndex, 1);
-      post.likes_count = Math.max(0, post.likes_count - 1);
+    const cleanSrn = userSrn.toUpperCase();
+    const index = post.liked_by.indexOf(cleanSrn);
+
+    if (index === -1) {
+      post.liked_by.push(cleanSrn);
+      post.likes_count = post.liked_by.length;
     } else {
-      post.liked_by.push(upperSrn);
-      post.likes_count += 1;
+      post.liked_by.splice(index, 1);
+      post.likes_count = post.liked_by.length;
     }
 
     this.write(db);
     return post;
   }
 
-  static addComment(postId: string, comment: Omit<DbPostComment, 'id' | 'created_at'>): DbPostComment {
+  static addComment(
+    postId: string,
+    commentData: {
+      author_srn: string;
+      author_name: string;
+      author_photo: string;
+      body: string;
+    }
+  ): DbComment {
     const db = this.read();
     const post = db.posts.find((p) => p.id === postId);
     if (!post) {
-      throw new Error(`Post ${postId} not found`);
+      throw new Error(`Post with ID ${postId} not found`);
     }
 
-    const newComment: DbPostComment = {
-      ...comment,
-      id: 'comm-' + Date.now() + '-' + crypto.randomBytes(3).toString('hex'),
+    const newComment: DbComment = {
+      id: 'comm-' + Date.now() + '-' + Math.floor(Math.random() * 1000000),
+      author_srn: commentData.author_srn.toUpperCase(),
+      author_name: commentData.author_name,
+      author_photo: commentData.author_photo,
+      body: commentData.body,
       created_at: new Date().toISOString(),
     };
 
-    if (!post.comments) post.comments = [];
     post.comments.push(newComment);
     post.comments_count = post.comments.length;
-
     this.write(db);
     return newComment;
   }
 
   // Invites
-  static getInvitesForUser(srn: string): DbInvite[] {
-    const upperSrn = srn.toUpperCase();
+  static getInvitesForUser(userSrn: string): DbInvite[] {
+    const cleanSrn = userSrn.toUpperCase();
     return this.read().invites.filter(
-      (inv) => inv.from_srn.toUpperCase() === upperSrn || inv.to_srn.toUpperCase() === upperSrn
+      (inv) => inv.from_srn === cleanSrn || inv.to_srn === cleanSrn
     );
   }
 
-  static createInvite(invite: Omit<DbInvite, 'id' | 'status' | 'created_at'>): DbInvite {
+  static createInvite(data: {
+    from_srn: string;
+    from_name: string;
+    from_photo: string;
+    from_dept: string;
+    to_srn: string;
+    message: string;
+    contact_info?: { email?: string; github?: string; phone?: string };
+  }): DbInvite {
     const db = this.read();
-    const fromUpper = invite.from_srn.toUpperCase();
-    const toUpper = invite.to_srn.toUpperCase();
+    const fromUpper = data.from_srn.toUpperCase();
+    const toUpper = data.to_srn.toUpperCase();
 
     if (fromUpper === toUpper) {
-      throw new Error('Cannot send a squad invite to yourself');
+      throw new Error('You cannot send a squad invitation to yourself.');
     }
 
+    // Check if an active invitation already exists
     const existing = db.invites.find(
       (inv) =>
-        inv.status === 'pending' &&
-        ((inv.from_srn.toUpperCase() === fromUpper && inv.to_srn.toUpperCase() === toUpper) ||
-          (inv.from_srn.toUpperCase() === toUpper && inv.to_srn.toUpperCase() === fromUpper))
+        inv.from_srn === fromUpper &&
+        inv.to_srn === toUpper &&
+        (inv.status === 'pending' || inv.status === 'accepted')
     );
 
     if (existing) {
-      throw new Error('A pending squad invitation already exists between you and this hacker');
+      throw new Error('An active invitation with this hacker already exists.');
     }
 
     const newInvite: DbInvite = {
-      ...invite,
-      from_srn: fromUpper,
-      to_srn: toUpper,
       id: 'inv-' + Date.now() + '-' + crypto.randomBytes(4).toString('hex'),
+      from_srn: fromUpper,
+      from_name: data.from_name,
+      from_photo: data.from_photo,
+      from_dept: data.from_dept,
+      to_srn: toUpper,
       status: 'pending',
+      message: data.message,
+      contact_info: data.contact_info,
       created_at: new Date().toISOString(),
     };
 
@@ -347,15 +433,19 @@ export class Database {
     return newInvite;
   }
 
-  static updateInviteStatus(inviteId: string, status: 'accepted' | 'declined', recipientSrn: string): DbInvite {
+  static updateInviteStatus(
+    inviteId: string,
+    status: 'accepted' | 'declined',
+    responderSrn: string
+  ): DbInvite {
     const db = this.read();
-    const invite = db.invites.find((inv) => inv.id === inviteId);
+    const invite = db.invites.find((i) => i.id === inviteId);
     if (!invite) {
-      throw new Error(`Invitation ${inviteId} not found`);
+      throw new Error(`Invitation ${inviteId} not found.`);
     }
 
-    if (invite.to_srn.toUpperCase() !== recipientSrn.toUpperCase()) {
-      throw new Error('You are not authorized to respond to this invitation');
+    if (invite.to_srn.toUpperCase() !== responderSrn.toUpperCase()) {
+      throw new Error('You are not authorized to respond to this invitation.');
     }
 
     invite.status = status;
@@ -363,18 +453,18 @@ export class Database {
     return invite;
   }
 
-  static getStatsForUser(srn: string): { connectionsCount: number; invitesSent: number; invitesReceived: number } {
-    const upperSrn = srn.toUpperCase();
-    const invites = this.read().invites;
+  // Statistics
+  static getStatsForUser(userSrn: string): {
+    connectionsCount: number;
+    invitesSent: number;
+    invitesReceived: number;
+  } {
+    const cleanSrn = userSrn.toUpperCase();
+    const invites = this.getInvitesForUser(cleanSrn);
 
-    const accepted = invites.filter(
-      (inv) =>
-        inv.status === 'accepted' &&
-        (inv.from_srn.toUpperCase() === upperSrn || inv.to_srn.toUpperCase() === upperSrn)
-    );
-
-    const sent = invites.filter((inv) => inv.from_srn.toUpperCase() === upperSrn);
-    const received = invites.filter((inv) => inv.to_srn.toUpperCase() === upperSrn);
+    const accepted = invites.filter((i) => i.status === 'accepted');
+    const sent = invites.filter((i) => i.from_srn === cleanSrn);
+    const received = invites.filter((i) => i.to_srn === cleanSrn);
 
     return {
       connectionsCount: accepted.length,
@@ -383,25 +473,19 @@ export class Database {
     };
   }
 
-  // Dynamic trending hashtags
   static getTrendingHashtags(): { tag: string; count: number }[] {
     const posts = this.getPosts();
-    const tagMap = new Map<string, number>();
+    const counts: Record<string, number> = {};
 
-    for (const post of posts) {
-      if (post.hashtags && Array.isArray(post.hashtags)) {
-        for (const tag of post.hashtags) {
-          const normalized = tag.toLowerCase();
-          tagMap.set(normalized, (tagMap.get(normalized) || 0) + 1);
-        }
-      }
-    }
+    posts.forEach((post) => {
+      post.hashtags?.forEach((tag) => {
+        const lower = tag.toLowerCase();
+        counts[lower] = (counts[lower] || 0) + 1;
+      });
+    });
 
-    const result: { tag: string; count: number }[] = [];
-    for (const [tag, count] of tagMap.entries()) {
-      result.push({ tag, count });
-    }
-
-    return result.sort((a, b) => b.count - a.count);
+    const list = Object.entries(counts).map(([tag, count]) => ({ tag, count }));
+    list.sort((a, b) => b.count - a.count);
+    return list.slice(0, 10);
   }
 }
