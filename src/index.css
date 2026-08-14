@@ -9,17 +9,61 @@
     --color-orange: #f78900;
     --color-amber: #ffb200;
     --color-cream: #ffeabb;
+    color-scheme: dark;
+  }
+
+  html {
+    color-scheme: dark;
   }
 
   body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #000000;
     color: #f1f5f9;
+    color-scheme: dark;
   }
 
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: 'Space Grotesk', sans-serif;
   }
+
+  /* Global Select & Option Dark Theme overrides */
+  select {
+    color-scheme: dark !important;
+  }
+
+  select option,
+  select optgroup {
+    background-color: #0d0d13 !important;
+    color: #f1f5f9 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    padding: 8px 12px !important;
+  }
+
+  select option:checked {
+    background-color: #1a1a24 !important;
+    color: #ffb200 !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* Fix Chrome / Edge / Safari Autofill Light / White Box Glitch */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #f78900 !important;
+  -webkit-box-shadow: 0 0 0 1000px #0e0e13 inset !important;
+  box-shadow: 0 0 0 1000px #0e0e13 inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  border-radius: 12px !important;
 }
 
 /* Smoked Obsidian Frosted Glass Classes */
