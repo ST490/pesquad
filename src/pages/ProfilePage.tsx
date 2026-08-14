@@ -54,6 +54,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   const [email, setEmail] = useState(currentUser.email || '');
   const [department, setDepartment] = useState(currentUser.department);
   const [semester, setSemester] = useState(currentUser.semester);
+  const [gender, setGender] = useState<'Male' | 'Female' | 'Other'>(currentUser.gender || 'Male');
   const [hackathonCount, setHackathonCount] = useState(currentUser.hackathon_count);
   const [githubUrl, setGithubUrl] = useState(currentUser.github_url || '');
   const [photoUrl, setPhotoUrl] = useState(currentUser.photo_url || '');
@@ -93,13 +94,13 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     if (file) {
       if (file.size > 2 * 1024 * 1024) {
         alert('Please choose an image under 2MB.');
-        return;
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPhotoUrl(reader.result as string);
+        };
+        reader.readAsDataURL(file);
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhotoUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -114,6 +115,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         email: email.trim() || undefined,
         department,
         semester: Number(semester),
+        gender,
         hackathon_count: Number(hackathonCount),
         github_url: githubUrl.trim(),
         photo_url: photoUrl,
@@ -241,6 +243,31 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 <span className="px-2.5 py-0.5 rounded-md badge-cream">
                   Semester {currentUser.semester}
                 </span>
+                {isEditing ? (
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value as any)}
+                    className="glass-input px-2 py-0.5 text-xs bg-[#121218] font-medium text-[#ffeabb]"
+                  >
+                    <option value="Male">👨 Male</option>
+                    <option value="Female">👩 Female (SIH Req)</option>
+                    <option value="Other">🧑 Other</option>
+                  </select>
+                ) : (
+                  gender && (
+                    <span
+                      className={`px-2.5 py-0.5 rounded-md text-xs font-semibold border ${
+                        gender === 'Female'
+                          ? 'bg-pink-500/20 text-pink-300 border-pink-500/40'
+                          : gender === 'Male'
+                          ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                          : 'bg-purple-500/20 text-purple-300 border-purple-500/40'
+                      }`}
+                    >
+                      {gender === 'Female' ? '👩 Female (SIH Diversity)' : `👨 ${gender}`}
+                    </span>
+                  )
+                )}
                 {currentUser.campus && (
                   <span className="flex items-center gap-1 text-slate-400">
                     <MapPin className="w-3.5 h-3.5 text-[#f78900]" />

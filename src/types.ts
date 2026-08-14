@@ -5,6 +5,7 @@ export interface UserProfile {
   department: string;
   branch?: string;
   semester: number;
+  gender?: 'Male' | 'Female' | 'Other';
   hackathon_count: number;
   github_url: string;
   photo_url: string;
@@ -73,6 +74,7 @@ export interface PESUOAuthUser {
   branch?: string;
   semester?: number;
   section?: string;
+  gender?: 'Male' | 'Female' | 'Other';
   campus?: 'RR Campus' | 'EC Campus';
   photo_base64?: string;
   email?: string;
@@ -84,6 +86,7 @@ export interface FilterOptions {
   searchQuery: string;
   department: string;
   semester: string;
+  gender?: string;
   minHackathons: number;
   sortBy: 'experience' | 'newest' | 'alphabetical';
   selectedInterest?: string;

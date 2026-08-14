@@ -39,6 +39,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [regName, setRegName] = useState('');
   const [regDepartment, setRegDepartment] = useState(PESU_DEPARTMENTS[0]);
   const [regSemester, setRegSemester] = useState(4);
+  const [regGender, setRegGender] = useState<'Male' | 'Female' | 'Other'>('Male');
   const [regCampus, setRegCampus] = useState<'RR Campus' | 'EC Campus'>('RR Campus');
   const [regEmail, setRegEmail] = useState('');
   const [regPassword, setRegPassword] = useState('');
@@ -120,6 +121,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         password: regPassword,
         department: regDepartment,
         semester: Number(regSemester),
+        gender: regGender,
         campus: regCampus,
         email: regEmail.trim().toLowerCase() || `${cleanName.toLowerCase().replace(/\s+/g, '')}.${cleanSrn.slice(-4).toLowerCase()}@pes.edu`,
       });
@@ -392,9 +394,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
 
                 <div>
                   <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    Semester & Campus *
+                    Semester, Campus & Gender *
                   </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <select
                       value={regSemester}
                       onChange={(e) => setRegSemester(Number(e.target.value))}
@@ -418,6 +420,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                           {c}
                         </option>
                       ))}
+                    </select>
+                    <select
+                      value={regGender}
+                      onChange={(e) => setRegGender(e.target.value as any)}
+                      className="w-full glass-input px-2 py-2 text-xs bg-[#121218] font-medium text-[#ffeabb]"
+                      disabled={isLoading}
+                    >
+                      <option value="Male" className="bg-[#121218] text-white">👨 Male</option>
+                      <option value="Female" className="bg-[#121218] text-white">👩 Female</option>
+                      <option value="Other" className="bg-[#121218] text-white">🧑 Other</option>
                     </select>
                   </div>
                 </div>

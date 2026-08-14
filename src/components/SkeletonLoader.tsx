@@ -1,6 +1,16 @@
 import React from 'react';
 import { GlassCard } from './GlassCard';
 
+export const SkeletonGrid: React.FC<{ count?: number }> = ({ count = 8 }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      {Array.from({ length: count }).map((_, i) => (
+        <PersonCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+};
+
 export const PersonCardSkeleton: React.FC = () => {
   return (
     <GlassCard className="p-5 h-[340px] flex flex-col justify-between border border-white/10 relative overflow-hidden group">

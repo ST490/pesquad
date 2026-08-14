@@ -12,6 +12,7 @@ export interface DbUser {
   department: string;
   branch: string;
   semester: number;
+  gender?: 'Male' | 'Female' | 'Other';
   campus: 'RR Campus' | 'EC Campus';
   email?: string;
   phone?: string;
@@ -95,6 +96,7 @@ const DEFAULT_INITIAL_DB: DatabaseSchema = {
       department: 'Computer Science and Engineering',
       branch: 'CSE',
       semester: 3,
+      gender: 'Male',
       campus: 'RR Campus',
       email: 'sufiyantatagar490@gmail.com',
       phone: '8050895979',

@@ -31,6 +31,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
   const [name, setName] = useState(currentUser.name || '');
   const [department, setDepartment] = useState(currentUser.department || PESU_DEPARTMENTS[0]);
   const [semester, setSemester] = useState(currentUser.semester || 4);
+  const [gender, setGender] = useState<'Male' | 'Female' | 'Other'>(currentUser.gender || 'Male');
   const [hackathonCount, setHackathonCount] = useState(currentUser.hackathon_count || 0);
   const [githubUrl, setGithubUrl] = useState(currentUser.github_url || '');
   const [phone, setPhone] = useState(currentUser.phone || '');
@@ -98,6 +99,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
         name: name.trim(),
         department,
         semester: Number(semester),
+        gender,
         hackathon_count: Number(hackathonCount),
         github_url: githubUrl.trim(),
         phone: phone.trim() || undefined,
@@ -222,8 +224,8 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
               </div>
             </div>
 
-            {/* Department & Semester */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Department, Semester & Gender */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
                   Department / Branch *
@@ -232,7 +234,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
                   id="onboarding-dept"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="w-full glass-input px-3.5 py-2.5 text-xs sm:text-sm bg-[#0a0a0d]"
+                  className="w-full glass-input px-3 py-2.5 text-xs sm:text-sm bg-[#0a0a0d]"
                   disabled={isSubmitting}
                 >
                   {PESU_DEPARTMENTS.map((dept) => (
@@ -251,7 +253,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
                   id="onboarding-semester"
                   value={semester}
                   onChange={(e) => setSemester(Number(e.target.value))}
-                  className="w-full glass-input px-3.5 py-2.5 text-xs sm:text-sm bg-[#0a0a0d]"
+                  className="w-full glass-input px-3 py-2.5 text-xs sm:text-sm bg-[#0a0a0d]"
                   disabled={isSubmitting}
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -259,6 +261,23 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = ({
                       Semester {sem}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
+                  Gender (SIH Diversity) *
+                </label>
+                <select
+                  id="onboarding-gender"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value as any)}
+                  className="w-full glass-input px-3 py-2.5 text-xs sm:text-sm bg-[#0a0a0d] font-medium text-[#ffeabb]"
+                  disabled={isSubmitting}
+                >
+                  <option value="Male">👨 Male</option>
+                  <option value="Female">👩 Female (SIH Req)</option>
+                  <option value="Other">🧑 Other</option>
                 </select>
               </div>
             </div>

@@ -177,6 +177,19 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               <span className="px-2.5 py-1 rounded-md badge-cream font-medium">
                 Semester {profile.semester}
               </span>
+              {profile.gender && (
+                <span
+                  className={`px-2.5 py-1 rounded-md font-semibold border ${
+                    profile.gender === 'Female'
+                      ? 'bg-pink-500/20 text-pink-300 border-pink-500/40'
+                      : profile.gender === 'Male'
+                      ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                      : 'bg-purple-500/20 text-purple-300 border-purple-500/40'
+                  }`}
+                >
+                  {profile.gender === 'Female' ? '👩 Female (SIH Diversity)' : `👨 ${profile.gender}`}
+                </span>
+              )}
               {profile.campus && (
                 <span className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/5 text-slate-300">
                   <MapPin className="w-3 h-3 text-[#f78900]" />

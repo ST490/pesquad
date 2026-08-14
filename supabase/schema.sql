@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS public.users (
   department TEXT NOT NULL,
   branch TEXT NOT NULL,
   semester INT NOT NULL DEFAULT 4,
+  gender TEXT DEFAULT 'Male' CHECK (gender IN ('Male', 'Female', 'Other')),
   campus TEXT NOT NULL DEFAULT 'RR Campus',
   email TEXT,
   phone TEXT,

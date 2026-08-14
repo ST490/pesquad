@@ -165,6 +165,7 @@ apiRouter.post('/auth/register', async (req: Request, res: Response) => {
       password,
       department,
       semester,
+      gender,
       campus,
       email,
       phone,
@@ -208,6 +209,7 @@ apiRouter.post('/auth/register', async (req: Request, res: Response) => {
       department: department || 'Computer Science & Engineering',
       branch: department ? department.split(' ')[0] : 'CSE',
       semester: semester ? Number(semester) : 4,
+      gender: gender === 'Female' ? 'Female' : gender === 'Other' ? 'Other' : 'Male',
       campus: campus === 'EC Campus' ? 'EC Campus' : 'RR Campus',
       email: email ? email.trim().toLowerCase() : `${name.toLowerCase().replace(/\s+/g, '')}.${cleanSrn.slice(-4).toLowerCase()}@pes.edu`,
       phone: phone ? phone.trim() : undefined,
@@ -284,6 +286,7 @@ apiRouter.get('/profiles', optionalAuthMiddleware, (req: AuthenticatedRequest, r
       search,
       department,
       semester,
+      gender,
       minHackathons,
       interest,
       sortBy = 'experience',
@@ -309,6 +312,10 @@ apiRouter.get('/profiles', optionalAuthMiddleware, (req: AuthenticatedRequest, r
 
     if (semester && semester !== 'All') {
       users = users.filter((u) => u.semester.toString() === String(semester));
+    }
+
+    if (gender && gender !== 'All' && typeof gender === 'string') {
+      users = users.filter((u) => u.gender?.toLowerCase() === gender.toLowerCase());
     }
 
     if (minHackathons) {
@@ -376,6 +383,7 @@ apiRouter.put('/profiles/:srn', authMiddleware, (req: AuthenticatedRequest, res:
       interests,
       skills,
       bio,
+      gender,
       campus,
       email,
       phone,
@@ -390,6 +398,9 @@ apiRouter.put('/profiles/:srn', authMiddleware, (req: AuthenticatedRequest, res:
       updates.branch = department.split(' ')[0] || 'CSE';
     }
     if (semester !== undefined) updates.semester = Number(semester);
+    if (gender && (gender === 'Male' || gender === 'Female' || gender === 'Other')) {
+      updates.gender = gender;
+    }
     if (hackathon_count !== undefined) updates.hackathon_count = Math.max(0, Number(hackathon_count));
     if (github_url !== undefined) updates.github_url = String(github_url).trim();
     if (photo_url !== undefined) updates.photo_url = String(photo_url).trim();

@@ -133,6 +133,7 @@ export const authApi = {
     password: string;
     department: string;
     semester: number;
+    gender?: 'Male' | 'Female' | 'Other';
     campus?: 'RR Campus' | 'EC Campus';
     email?: string;
     phone?: string;
@@ -197,6 +198,7 @@ export const profileApi = {
     if (filters?.searchQuery) params.append('search', filters.searchQuery);
     if (filters?.department && filters.department !== 'All') params.append('department', filters.department);
     if (filters?.semester && filters.semester !== 'All') params.append('semester', filters.semester);
+    if (filters?.gender && filters.gender !== 'All') params.append('gender', filters.gender);
     if (filters?.minHackathons && filters.minHackathons > 0) {
       params.append('minHackathons', filters.minHackathons.toString());
     }

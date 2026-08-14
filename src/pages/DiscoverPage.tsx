@@ -1,37 +1,43 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { UserProfile, FilterOptions } from '../types';
-import { PersonCard } from '../components/PersonCard';
-import { GlassCard } from '../components/GlassCard';
-import { PersonCardSkeleton } from '../components/SkeletonLoader';
-import { PESU_DEPARTMENTS, AVAILABLE_INTERESTS } from '../constants/pesuData';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { UserProfile } from '../types';
 import { profileApi, ApiError } from '../services/api';
+import { PersonCard } from '../components/PersonCard';
+import { ProfileModal } from '../components/ProfileModal';
+import { SkeletonGrid } from '../components/SkeletonLoader';
+import { GlassCard } from '../components/GlassCard';
 import {
   Search,
   SlidersHorizontal,
   Flame,
-  Users,
   RotateCcw,
-  ChevronDown,
+  Sparkles,
   RefreshCw,
+  ChevronDown,
+  Users,
   AlertCircle,
 } from 'lucide-react';
+import { PESU_DEPARTMENTS, AVAILABLE_INTERESTS } from '../constants/pesuData';
 
 interface DiscoverPageProps {
-  currentUser: UserProfile | null;
-  onSelectProfile: (profile: UserProfile) => void;
+  currentUser: UserProfile;
+  onSendInvite?: (toSrn: string, message: string) => Promise<void>;
+  onNavigateToChat?: () => void;
 }
 
 export const DiscoverPage: React.FC<DiscoverPageProps> = ({
   currentUser,
-  onSelectProfile,
+  onSendInvite,
+  onNavigateToChat,
 }) => {
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
+  const [selectedProfile, setSelectedProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDept, setSelectedDept] = useState('All');
   const [selectedSemester, setSelectedSemester] = useState('All');
+  const [selectedGender, setSelectedGender] = useState<string>('All');
   const [minHackathons, setMinHackathons] = useState(0);
   const [sortBy, setSortBy] = useState<'experience' | 'newest' | 'alphabetical'>('experience');
   const [selectedInterest, setSelectedInterest] = useState<string>('All');
@@ -117,6 +123,11 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
           return false;
         }
 
+        // Gender filter (SIH diversity matching)
+        if (selectedGender !== 'All' && profile.gender?.toLowerCase() !== selectedGender.toLowerCase()) {
+          return false;
+        }
+
         // Min hackathons filter
         if (profile.hackathon_count < minHackathons) {
           return false;
@@ -141,12 +152,13 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
         }
         return 0;
       });
-  }, [profiles, searchQuery, selectedDept, selectedSemester, minHackathons, sortBy, selectedInterest]);
+  }, [profiles, searchQuery, selectedDept, selectedSemester, selectedGender, minHackathons, sortBy, selectedInterest]);
 
   const resetFilters = () => {
     setSearchQuery('');
     setSelectedDept('All');
     setSelectedSemester('All');
+    setSelectedGender('All');
     setMinHackathons(0);
     setSortBy('experience');
     setSelectedInterest('All');
@@ -156,6 +168,7 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
     searchQuery !== '' ||
     selectedDept !== 'All' ||
     selectedSemester !== 'All' ||
+    selectedGender !== 'All' ||
     minHackathons > 0 ||
     selectedInterest !== 'All';
 
@@ -212,7 +225,7 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
             {/* Controls Row */}
             <div className="flex flex-wrap items-center gap-2">
               {/* Department Dropdown */}
-              <div className="flex-1 sm:flex-initial min-w-[150px]">
+              <div className="flex-1 sm:flex-initial min-w-[140px]">
                 <select
                   id="filter-department-select"
                   value={selectedDept}
@@ -229,7 +242,7 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
               </div>
 
               {/* Semester Dropdown */}
-              <div className="flex-1 sm:flex-initial min-w-[110px]">
+              <div className="flex-1 sm:flex-initial min-w-[105px]">
                 <select
                   id="filter-semester-select"
                   value={selectedSemester}
@@ -245,8 +258,29 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
                 </select>
               </div>
 
+              {/* Gender Dropdown (SIH Diversity Requirement) */}
+              <div className="flex-1 sm:flex-initial min-w-[125px]">
+                <select
+                  id="filter-gender-select"
+                  value={selectedGender}
+                  onChange={(e) => setSelectedGender(e.target.value)}
+                  className={`w-full glass-input px-3 py-2.5 text-xs bg-[#0a0a0d] cursor-pointer font-medium ${
+                    selectedGender === 'Female'
+                      ? 'border-pink-500/50 text-pink-300'
+                      : selectedGender === 'Male'
+                      ? 'border-blue-500/50 text-blue-300'
+                      : 'text-slate-200'
+                  }`}
+                >
+                  <option value="All">All Genders</option>
+                  <option value="Female">👩 Female (SIH Req)</option>
+                  <option value="Male">👨 Male</option>
+                  <option value="Other">🧑 Other</option>
+                </select>
+              </div>
+
               {/* Sort Dropdown */}
-              <div className="flex-1 sm:flex-initial min-w-[150px]">
+              <div className="flex-1 sm:flex-initial min-w-[140px]">
                 <select
                   id="filter-sort-select"
                   value={sortBy}
@@ -300,6 +334,43 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
           {/* Expandable Advanced Filters */}
           {showFilterDrawer && (
             <div className="pt-3 border-t border-white/10 space-y-3 animate-in fade-in duration-200">
+              {/* SIH Gender Compliance Widget */}
+              <div className="p-3 rounded-xl bg-gradient-to-r from-pink-950/30 via-purple-950/20 to-transparent border border-pink-500/25 space-y-2">
+                <div className="flex flex-wrap justify-between items-center gap-2 text-xs">
+                  <span className="text-pink-300 font-semibold flex items-center gap-1.5">
+                    <span>👩</span> SIH 2026 Gender Diversity Filter
+                  </span>
+                  <span className="text-[10px] text-pink-300/90 bg-pink-500/10 px-2 py-0.5 rounded-full border border-pink-500/20">
+                    Smart India Hackathon Rule: Min 1 Female Hacker per Team
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { key: 'All', label: 'All Genders' },
+                    { key: 'Female', label: '👩 Female Hackers (SIH Required)' },
+                    { key: 'Male', label: '👨 Male Hackers' },
+                    { key: 'Other', label: '🧑 Other' },
+                  ].map((g) => (
+                    <button
+                      key={g.key}
+                      type="button"
+                      onClick={() => setSelectedGender(g.key)}
+                      className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all ${
+                        selectedGender === g.key
+                          ? g.key === 'Female'
+                            ? 'bg-pink-600 text-white shadow-md'
+                            : g.key === 'Male'
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'bg-[#f78900] text-black shadow-md'
+                          : 'bg-white/5 text-slate-300 hover:bg-white/10'
+                      }`}
+                    >
+                      {g.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                 {/* Min Hackathons Slider */}
                 <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-2">
@@ -353,109 +424,131 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
             </div>
           )}
 
-          {/* Quick Domain Filter Chips */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-            <span className="text-[11px] text-slate-400 font-medium whitespace-nowrap mr-1">
+          {/* Quick Domain Pill filters */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
+            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0 mr-1">
               Popular:
             </span>
-            {['All', 'Machine Learning', 'Full Stack', 'IoT & Robotics', 'UI/UX Design', 'Blockchain & Web3', 'Cybersecurity'].map(
-              (domain) => {
-                const isSelected = selectedInterest === domain;
-                return (
-                  <button
-                    key={domain}
-                    onClick={() => setSelectedInterest(domain)}
-                    className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                      isSelected
-                        ? 'bg-gradient-to-r from-[#f78900] to-[#ffb200] text-black font-bold shadow-sm'
-                        : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
-                    }`}
-                  >
-                    {domain}
-                  </button>
-                );
-              }
-            )}
+            <button
+              onClick={() => setSelectedInterest('All')}
+              className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
+                selectedInterest === 'All'
+                  ? 'bg-[#f78900] text-black shadow-[0_0_12px_rgba(247,137,0,0.4)]'
+                  : 'bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10'
+              }`}
+            >
+              All
+            </button>
+            {AVAILABLE_INTERESTS.slice(0, 6).map((interest) => (
+              <button
+                key={interest}
+                onClick={() => setSelectedInterest(interest === selectedInterest ? 'All' : interest)}
+                className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
+                  selectedInterest === interest
+                    ? 'bg-[#f78900] text-black shadow-[0_0_12px_rgba(247,137,0,0.4)]'
+                    : 'bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10'
+                }`}
+              >
+                {interest}
+              </button>
+            ))}
           </div>
         </GlassCard>
       </div>
 
-      {/* Error Alert State */}
+      {/* Error state */}
       {fetchError && (
-        <div className="p-4 rounded-xl bg-rose-950/80 border border-rose-500/40 text-rose-200 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
-            <span>{fetchError}</span>
+        <GlassCard className="p-4 border-red-500/30 bg-red-950/20 text-red-300 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+            <span className="text-sm font-medium">{fetchError}</span>
           </div>
           <button
             onClick={loadProfiles}
-            className="btn-secondary px-3 py-1 text-xs text-white"
+            className="px-3 py-1 rounded-lg bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-xs font-bold text-red-200 transition-colors"
           >
             Retry
           </button>
-        </div>
+        </GlassCard>
       )}
 
-      {/* Results Count & active chips */}
-      <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-        <div>
-          Showing <span className="text-white font-semibold">{filteredProfiles.length}</span> students matching criteria
+      {/* Results Header */}
+      <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-medium px-1">
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-[#f78900]" />
+          <span>
+            Showing <strong className="text-white">{filteredProfiles.length}</strong>{' '}
+            {filteredProfiles.length === 1 ? 'PESU hacker' : 'PESU hackers'}
+          </span>
+          {selectedGender === 'Female' && (
+            <span className="ml-1 text-[11px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
+              👩 Female Filter Active
+            </span>
+          )}
+          {selectedGender === 'Male' && (
+            <span className="ml-1 text-[11px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              👨 Male Filter Active
+            </span>
+          )}
         </div>
+
         {hasActiveFilters && (
           <button
             onClick={resetFilters}
-            className="text-[#ffb200] hover:underline flex items-center gap-1"
+            className="text-xs text-[#ffb200] hover:underline flex items-center gap-1"
           >
-            <RotateCcw className="w-3 h-3" />
-            <span>Clear all filters</span>
+            <span>Clear Filters</span>
           </button>
         )}
       </div>
 
-      {/* Person Cards Grid */}
+      {/* Loading Skeleton Grid */}
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-            <PersonCardSkeleton key={i} />
-          ))}
-        </div>
+        <SkeletonGrid count={8} />
       ) : filteredProfiles.length > 0 ? (
-        <div
-          id="profiles-grid"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-        >
+        /* Profiles Grid */
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredProfiles.map((profile) => (
             <PersonCard
               key={profile.srn}
               profile={profile}
-              onClick={() => onSelectProfile(profile)}
-              isCurrentUser={currentUser?.srn.toLowerCase() === profile.srn.toLowerCase()}
+              isCurrentUser={profile.srn === currentUser.srn}
+              onClick={() => setSelectedProfile(profile)}
             />
           ))}
         </div>
       ) : (
         /* Empty State */
-        <GlassCard className="p-12 text-center border border-white/10 space-y-4 max-w-lg mx-auto">
+        <GlassCard className="p-12 text-center max-w-md mx-auto my-12 space-y-4">
           <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto text-slate-400">
-            <Users className="w-8 h-8 text-[#ffb200]" />
+            <Users className="w-8 h-8 text-slate-500" />
           </div>
-          <h3 className="text-xl font-bold font-heading text-white">
-            {profiles.length === 0 ? 'No Registered Hackers Yet' : 'No Hackers Found'}
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            {profiles.length === 0
-              ? 'Be the first PES University student to create a profile and start forming your Smart India Hackathon 2026 squad!'
-              : 'No PESU students match your current filter combination. Try clearing your search query or lowering the minimum hackathons threshold.'}
-          </p>
-          {hasActiveFilters && (
-            <button
-              onClick={resetFilters}
-              className="btn-primary px-6 py-2.5 text-xs font-semibold"
-            >
-              Reset Filters
-            </button>
-          )}
+          <div>
+            <h3 className="text-lg font-bold text-white font-heading">No Hackers Found</h3>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              No students match your selected filters. Try broadening your search or resetting filters.
+            </p>
+          </div>
+          <button
+            onClick={resetFilters}
+            className="btn-primary text-xs px-5 py-2 inline-flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset All Filters</span>
+          </button>
         </GlassCard>
+      )}
+
+      {/* Profile Detail Modal */}
+      {selectedProfile && (
+        <ProfileModal
+          profile={selectedProfile}
+          isCurrentUser={selectedProfile.srn === currentUser.srn}
+          isOpen={!!selectedProfile}
+          onClose={() => setSelectedProfile(null)}
+          onSendInvite={onSendInvite}
+          onNavigateToChat={onNavigateToChat}
+        />
       )}
     </div>
   );

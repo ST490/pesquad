@@ -53,10 +53,26 @@ export const PersonCard: React.FC<PersonCardProps> = ({
               </span>
             </div>
 
-            {/* Semester badge */}
-            <span className="px-2 py-0.5 rounded-md text-[11px] font-medium badge-cream">
-              Sem {profile.semester}
-            </span>
+            {/* Gender & Semester badges */}
+            <div className="flex items-center gap-1.5">
+              {profile.gender && (
+                <span
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-semibold border ${
+                    profile.gender === 'Female'
+                      ? 'bg-pink-500/20 text-pink-300 border-pink-500/30'
+                      : profile.gender === 'Male'
+                      ? 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+                      : 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+                  }`}
+                  title={profile.gender === 'Female' ? 'Female Hacker (SIH Diversity Requirement)' : `Gender: ${profile.gender}`}
+                >
+                  {profile.gender === 'Female' ? '👩 Female' : profile.gender === 'Male' ? '👨 Male' : profile.gender}
+                </span>
+              )}
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-medium badge-cream">
+                Sem {profile.semester}
+              </span>
+            </div>
           </div>
         </div>
 
