@@ -3,12 +3,12 @@
     {
       "srn": "PES1UG25CS698",
       "prn": "PES1202504729",
-      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
-      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "passwordHash": "2497077eba673d24cc729b11f50b1dadf840aadd72bb7275c31c1d6d4215575b2cf71e7643179a55c8fced23e72efc455840ef28fb32b05d73cfd64c894a2ced",
+      "salt": "f1d1a596bb165e67eec4aef3747becff",
       "name": "SUFIYAN TATAGAR",
       "department": "Computer Science and Engineering",
-      "branch": "CSE",
-      "semester": 3,
+      "branch": "Computer",
+      "semester": 4,
       "campus": "RR Campus",
       "email": "sufiyantatagar490@gmail.com",
       "phone": "8050895979",
@@ -31,17 +31,23 @@
         "Full Stack Developer"
       ],
       "created_at": "2026-08-14T20:35:30.654Z",
-      "updated_at": "2026-08-14T20:35:54.679Z"
+      "updated_at": "2026-08-14T21:19:22.018Z"
     }
   ],
   "posts": [],
   "invites": [],
   "sessions": [
     {
-      "token": "b061474d5e79d09acd7f83c082afc96afd896c621d90ccecdc53c6b705a37b16",
+      "token": "982dc7a8203354503c768eea98a8ba4a172cbaf0d36a6434f79fed35aa23e546",
       "srn": "PES1UG25CS698",
-      "createdAt": "2026-08-14T20:35:30.664Z",
-      "expiresAt": "2026-08-21T20:35:30.664Z"
+      "createdAt": "2026-08-14T21:19:10.708Z",
+      "expiresAt": "2026-08-21T21:19:10.708Z"
+    },
+    {
+      "token": "02cdb021539921fbb8d46d0f039c2d2def6f8eaa13bffb5c475a16a0c58da6f6",
+      "srn": "PES1UG25CS698",
+      "createdAt": "2026-08-14T21:19:22.023Z",
+      "expiresAt": "2026-08-21T21:19:22.023Z"
     }
   ]
 }
