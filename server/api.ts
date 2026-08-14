@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
-import { Database, DbUser } from './db';
-import { getAppSession } from './session';
-import { PesuAuthService } from './pesuAuthService';
+import { Database, DbUser } from './db.js';
+import { getAppSession } from './session.js';
+import { PesuAuthService } from './pesuAuthService.js';
 
 export const apiRouter = Router();
 

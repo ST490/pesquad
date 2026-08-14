@@ -5,7 +5,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "/api/index.js"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/((?!api/).*)",

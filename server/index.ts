@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import { apiRouter } from './api';
+import { apiRouter } from './api.js';
 
 dotenv.config();
 

@@ -1,4 +1,4 @@
-import { Database, DbUser } from './db';
+import { Database, DbUser } from './db.js';
 
 export interface PesuAuthProfile {
   name: string;
