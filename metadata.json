@@ -1,0 +1,6 @@
+{
+  "name": "PESquad",
+  "description": "Smart India Hackathon teammate finder and community platform for PES University students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
