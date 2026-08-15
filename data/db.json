@@ -250,26 +250,295 @@
       "updated_at": "2026-08-15T08:00:00.000Z"
     },
     {
-      "srn": "SUF@GMAIL.COM",
-      "passwordHash": "eca6c35d64f6fa849263b7e5e6d76a2bbbe618813e19cc0acff06f884c1de275447a85b4c52c8d406cd6d14d395e00a40f14d2bd27288b2c07beba5961830b28",
-      "salt": "c8441a0fd35e30fadbda09a7e0ba8a3f",
-      "name": "SUF@GMAIL.COM",
+      "srn": "PES1UG25CS104",
+      "prn": "PES1202500104",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Ananya Sharma",
       "department": "Computer Science and Engineering",
       "branch": "CSE",
       "semester": 4,
+      "gender": "Female",
       "campus": "RR Campus",
-      "email": "suf@gmail.com@pes.edu",
+      "email": "ananya.sharma@pes.edu",
+      "phone": "9845012345",
       "photo_url": "",
-      "hackathon_count": 0,
-      "github_url": "",
-      "interests": [],
-      "skills": [],
-      "bio": "",
+      "hackathon_count": 5,
+      "github_url": "https://github.com/ananyasharma",
+      "interests": [
+        "Natural Language Processing",
+        "Machine Learning",
+        "Full Stack"
+      ],
+      "skills": [
+        "PyTorch",
+        "FastAPI",
+        "LangChain",
+        "React"
+      ],
+      "bio": "5x hackathon winner specializing in LLMs and AI agent architectures. Looking for a passionate team for SIH 2026!",
       "looking_for_team": true,
       "preferred_roles": [
+        "AI / ML Engineer",
+        "Team Lead / PM"
+      ],
+      "created_at": "2026-08-15T08:30:00.000Z",
+      "updated_at": "2026-08-15T08:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EC215",
+      "prn": "PES1202501215",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Kavya Ramesh",
+      "department": "Electronics & Communication",
+      "branch": "ECE",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "kavya.ramesh@pes.edu",
+      "phone": "9741098765",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/kavyaramesh",
+      "interests": [
+        "IoT / Embedded",
+        "Robotics",
+        "Edge AI"
+      ],
+      "skills": [
+        "ESP32",
+        "Arduino",
+        "C++",
+        "TinyML"
+      ],
+      "bio": "ECE hardware hacker building smart IoT sensors and edge computing devices for smart city and agri-tech challenges.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / IoT Specialist"
+      ],
+      "created_at": "2026-08-15T09:00:00.000Z",
+      "updated_at": "2026-08-15T09:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS442",
+      "prn": "PES1202503442",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Rohan Varma",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "EC Campus",
+      "email": "rohan.varma@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/rohanvarma",
+      "interests": [
+        "Cloud Computing",
+        "Backend",
+        "DevOps"
+      ],
+      "skills": [
+        "AWS",
+        "Kubernetes",
+        "Go",
+        "PostgreSQL",
+        "Terraform"
+      ],
+      "bio": "Cloud infra engineer passionate about building high-availability backends and scalable microservices architectures.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "DevOps / Cloud Architect",
+        "Backend Developer"
+      ],
+      "created_at": "2026-08-15T09:30:00.000Z",
+      "updated_at": "2026-08-15T09:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25BT019",
+      "prn": "PES1202502019",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Pooja Hegde",
+      "department": "Biotechnology",
+      "branch": "BT",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "pooja.hegde@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "",
+      "interests": [
+        "Data Science",
+        "Healthcare Tech",
+        "Bioinformatics"
+      ],
+      "skills": [
+        "BioPython",
+        "R",
+        "Python",
+        "Data Analytics"
+      ],
+      "bio": "Biotech student bridging computational biology with health-tech AI solutions for SIH MedTech problem statements.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Data Scientist / Analyst",
+        "Domain Specialist"
+      ],
+      "created_at": "2026-08-15T10:00:00.000Z",
+      "updated_at": "2026-08-15T10:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CY118",
+      "prn": "PES1202504118",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Aditya Kulkarni",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "aditya.kulkarni@pes.edu",
+      "phone": "9900112233",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/adityakulkarni",
+      "interests": [
+        "Cybersecurity",
+        "Blockchain / Web3",
+        "Backend"
+      ],
+      "skills": [
+        "Solidity",
+        "Rust",
+        "Penetration Testing",
+        "Node.js"
+      ],
+      "bio": "Smart contract auditor and security researcher. Keen on Web3, zero-knowledge proofs, and secure digital identity.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Blockchain / Web3 Dev",
+        "Security Specialist"
+      ],
+      "created_at": "2026-08-15T10:30:00.000Z",
+      "updated_at": "2026-08-15T10:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS550",
+      "prn": "PES1202503550",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Tanvi Deshmukh",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "tanvi.deshmukh@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "",
+      "interests": [
+        "AR / VR / XR",
+        "Frontend",
+        "Game Development"
+      ],
+      "skills": [
+        "Three.js",
+        "Unity",
+        "WebGL",
+        "React",
+        "Tailwind"
+      ],
+      "bio": "Creative 3D web developer building immersive spatial computing and AR/VR web experiences for SIH.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Frontend Developer",
+        "UI / UX Designer"
+      ],
+      "created_at": "2026-08-15T11:00:00.000Z",
+      "updated_at": "2026-08-15T11:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25DS033",
+      "prn": "PES1202505033",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Deepak Sundaram",
+      "department": "Data Science",
+      "branch": "DS",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "deepak.sundaram@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/deepaksundaram",
+      "interests": [
+        "Deep Learning",
+        "Computer Vision",
+        "MLOps"
+      ],
+      "skills": [
+        "TensorFlow",
+        "OpenCV",
+        "MLflow",
+        "Python",
+        "FastAPI"
+      ],
+      "bio": "Passionate about real-time vision pipelines, object tracking, and deploying optimized models on edge hardware.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Backend Developer"
+      ],
+      "created_at": "2026-08-15T11:30:00.000Z",
+      "updated_at": "2026-08-15T11:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25DS108",
+      "prn": "PES1202505108",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Meera Nandakumar",
+      "department": "Data Science",
+      "branch": "DS",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "meera.nandakumar@pes.edu",
+      "phone": "9880011224",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/meerananda",
+      "interests": [
+        "Predictive Analytics",
+        "Full Stack",
+        "Data Science"
+      ],
+      "skills": [
+        "Pandas",
+        "Scikit-Learn",
+        "React",
+        "Node.js",
+        "SQL"
+      ],
+      "bio": "Data scientist & full stack engineer experienced in building data-driven dashboards and smart recommendation systems.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Data Scientist / Analyst",
         "Full Stack Developer"
       ],
-      "created_at": "2026-08-15T14:24:59.984Z"
+      "created_at": "2026-08-15T12:00:00.000Z",
+      "updated_at": "2026-08-15T12:00:00.000Z"
     }
   ],
   "posts": [],
@@ -280,18 +549,6 @@
       "srn": "PES1UG25CS698",
       "createdAt": "2026-08-14T20:35:30.664Z",
       "expiresAt": "2026-08-21T20:35:30.664Z"
-    },
-    {
-      "token": "bff9a37fd312e6aba01765adcf946406d59c7189245d5fa504e05a7a19b4a1bc",
-      "srn": "SUF@GMAIL.COM",
-      "createdAt": "2026-08-15T14:24:59.996Z",
-      "expiresAt": "2026-08-22T14:24:59.996Z"
-    },
-    {
-      "token": "26466761ea35e7f9d67d5b55ee4619d98b00c5d1d7a47862b4859f11fb4b878c",
-      "srn": "SUF@GMAIL.COM",
-      "createdAt": "2026-08-15T14:33:46.555Z",
-      "expiresAt": "2026-08-22T14:33:46.555Z"
     }
   ]
 }
