@@ -22,7 +22,7 @@ export interface PesuAuthResponse {
 
 export class PesuAuthService {
   public static getBaseUrl(): string {
-    return process.env.PESU_AUTH_URL || 'https://pesu-auth.onrender.com';
+    return process.env.PESU_AUTH_URL || 'http://localhost:5000';
   }
 
   /**
@@ -42,51 +42,61 @@ export class PesuAuthService {
     const cleanUsername = rawUsername.toUpperCase().startsWith('PES')
       ? rawUsername.toUpperCase()
       : rawUsername;
-    const pesuAuthUrl = this.getBaseUrl().replace(/\/+$/, '');
+
+    // List of endpoints to try: configured URL -> localhost:5000 -> cloud
+    const configuredUrl = (process.env.PESU_AUTH_URL || '').replace(/\/+$/, '');
+    const endpointsToTry: string[] = [];
+    if (configuredUrl) endpointsToTry.push(configuredUrl);
+    if (!endpointsToTry.includes('http://localhost:5000')) endpointsToTry.push('http://localhost:5000');
+    if (!endpointsToTry.includes('https://pesu-auth.onrender.com')) endpointsToTry.push('https://pesu-auth.onrender.com');
 
     let remoteAuthSucceeded = false;
-    let remoteAuthRejected = false; // true if upstream explicitly said status: false
-    let upstreamReachable = false;
+    let remoteAuthRejected = false;
     let studentProfile: PesuAuthProfile | undefined;
 
-    // 1. Authenticate against pesu-dev/auth upstream (45s timeout for Render cold starts)
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 45000);
+    // 1. Attempt authentication against pesu-dev/auth endpoints
+    for (const pesuAuthUrl of endpointsToTry) {
+      try {
+        const isLocal = pesuAuthUrl.includes('localhost') || pesuAuthUrl.includes('127.0.0.1');
+        const timeoutMs = isLocal ? 8000 : 45000;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      const response = await fetch(`${pesuAuthUrl}/authenticate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          username: cleanUsername,
-          password: password,
-          profile: true,
-        }),
-        signal: controller.signal,
-      });
+        const response = await fetch(`${pesuAuthUrl}/authenticate`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            username: cleanUsername,
+            password: password,
+            profile: true,
+          }),
+          signal: controller.signal,
+        });
 
-      clearTimeout(timeoutId);
-      upstreamReachable = true;
+        clearTimeout(timeoutId);
 
-      if (response.ok) {
-        const data = (await response.json()) as PesuAuthResponse;
-        if (data.status && data.profile && data.profile.srn) {
-          remoteAuthSucceeded = true;
-          studentProfile = data.profile;
-        } else {
-          // Upstream responded but credentials were invalid
+        if (response.ok) {
+          const data = (await response.json()) as PesuAuthResponse;
+          if (data.status && data.profile && data.profile.srn) {
+            remoteAuthSucceeded = true;
+            studentProfile = data.profile;
+            break; // Succeeded!
+          } else {
+            // Upstream explicitly rejected credentials
+            remoteAuthRejected = true;
+            break;
+          }
+        } else if (response.status === 400 || response.status === 401 || response.status === 403) {
+          // Explicit invalid credentials rejection from PESU
           remoteAuthRejected = true;
+          break;
         }
-      } else {
-        // Non-OK response (4xx/5xx) — upstream explicitly rejected
-        remoteAuthRejected = true;
+      } catch (networkError: any) {
+        console.warn(`[pesu-dev/auth] ${pesuAuthUrl} check bypassed/offline: ${networkError.message}`);
       }
-    } catch (networkError: any) {
-      console.warn(`[pesu-dev/auth] Upstream unreachable: ${networkError.message}`);
-      // upstreamReachable stays false — timeout or network failure
     }
 
     // 2. If remote auth succeeded, synchronize with local database
