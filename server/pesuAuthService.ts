@@ -114,7 +114,7 @@ export class PesuAuthService {
 
       if (existing) {
         const { hash, salt } = Database.hashPassword(password);
-        const updated = Database.updateUser(cleanSrn, {
+        const updated = await Database.updateUserAsync(cleanSrn, {
           name: studentProfile.name || existing.name,
           prn: studentProfile.prn || existing.prn,
           department: studentProfile.branch || existing.department,
@@ -154,7 +154,7 @@ export class PesuAuthService {
           created_at: new Date().toISOString(),
         };
 
-        const created = Database.createUser(newUser);
+        const created = await Database.createUserAsync(newUser);
         return { user: created, isFirstLogin: true, authSource: 'pesu-dev/auth' };
       }
     }

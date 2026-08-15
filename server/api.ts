@@ -375,7 +375,7 @@ apiRouter.get('/profiles/:srn', async (req: Request, res: Response) => {
 });
 
 // PUT /api/profiles/:srn
-apiRouter.put('/profiles/:srn', authMiddleware, (req: AuthenticatedRequest, res: Response) => {
+apiRouter.put('/profiles/:srn', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const targetSrn = req.params.srn.toUpperCase();
     if (!req.user || req.user.srn.toUpperCase() !== targetSrn) {
@@ -423,7 +423,7 @@ apiRouter.put('/profiles/:srn', authMiddleware, (req: AuthenticatedRequest, res:
     if (looking_for_team !== undefined) updates.looking_for_team = Boolean(looking_for_team);
     if (preferred_roles && Array.isArray(preferred_roles)) updates.preferred_roles = preferred_roles;
 
-    const updated = Database.updateUser(targetSrn, updates);
+    const updated = await Database.updateUserAsync(targetSrn, updates);
     res.json({
       message: 'Profile updated successfully.',
       profile: sanitizeUser(updated),

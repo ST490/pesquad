@@ -504,6 +504,19 @@ export class Database {
     return user;
   }
 
+  static async createUserAsync(user: DbUser): Promise<DbUser> {
+    const db = this.read();
+    const existingIndex = db.users.findIndex((u) => u.srn.toUpperCase() === user.srn.toUpperCase());
+    if (existingIndex >= 0) {
+      db.users[existingIndex] = user;
+    } else {
+      db.users.push(user);
+    }
+    this.write(db);
+    await this.syncUserToSupabase(user);
+    return user;
+  }
+
   static updateUser(srn: string, updates: Partial<DbUser>): DbUser {
     const db = this.read();
     const index = db.users.findIndex((u) => u.srn.toUpperCase() === srn.toUpperCase());
@@ -522,6 +535,27 @@ export class Database {
     db.users[index] = updated;
     this.write(db);
     this.syncUserToSupabase(updated);
+    return updated;
+  }
+
+  static async updateUserAsync(srn: string, updates: Partial<DbUser>): Promise<DbUser> {
+    const db = this.read();
+    const index = db.users.findIndex((u) => u.srn.toUpperCase() === srn.toUpperCase());
+    if (index === -1) {
+      throw new Error(`User with SRN ${srn} not found`);
+    }
+
+    const current = db.users[index];
+    const updated: DbUser = {
+      ...current,
+      ...updates,
+      srn: current.srn, // SRN cannot be modified
+      updated_at: new Date().toISOString(),
+    };
+
+    db.users[index] = updated;
+    this.write(db);
+    await this.syncUserToSupabase(updated);
     return updated;
   }
 
