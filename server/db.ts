@@ -119,8 +119,14 @@ const DEFAULT_INITIAL_DB: DatabaseSchema = {
 
 // In-memory caching for serverless environments
 let memoryDb: DatabaseSchema = JSON.parse(JSON.stringify(DEFAULT_INITIAL_DB));
+let dbInitialized = false;
 
 function getDbFilePath(): string {
+  // On Vercel (serverless), the deployed data/db.json is read-only.
+  // Always use /tmp for writable storage in serverless environments.
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), 'pesquad_db.json');
+  }
   try {
     const localDataDir = path.resolve(process.cwd(), 'data');
     const localDbFile = path.join(localDataDir, 'db.json');
@@ -134,6 +140,13 @@ function getDbFilePath(): string {
 }
 
 function ensureDbFile(): DatabaseSchema {
+  // Once loaded in this container, always use the in-memory cache.
+  // This prevents re-reading a stale/read-only file from overwriting
+  // in-memory changes (e.g. users created during login).
+  if (dbInitialized) {
+    return memoryDb;
+  }
+
   const dbFile = getDbFilePath();
   const dbDir = path.dirname(dbFile);
 
@@ -145,14 +158,17 @@ function ensureDbFile(): DatabaseSchema {
     if (!fs.existsSync(dbFile)) {
       fs.writeFileSync(dbFile, JSON.stringify(DEFAULT_INITIAL_DB, null, 2), 'utf-8');
       memoryDb = JSON.parse(JSON.stringify(DEFAULT_INITIAL_DB));
+      dbInitialized = true;
       return memoryDb;
     }
 
     const content = fs.readFileSync(dbFile, 'utf-8');
     memoryDb = JSON.parse(content);
+    dbInitialized = true;
     return memoryDb;
   } catch (error) {
     // Fallback to memoryDb if file system is read-only
+    dbInitialized = true;
     return memoryDb;
   }
 }
