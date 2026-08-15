@@ -3,7 +3,6 @@ import crypto from 'crypto';
 import { Database, DbUser } from './db.js';
 import { getAppSession } from './session.js';
 import { PesuAuthService } from './pesuAuthService.js';
-import { PesuOAuthService } from './pesuOAuth.js';
 
 export const apiRouter = Router();
 
@@ -168,104 +167,11 @@ function sanitizeUser(user: DbUser): Omit<DbUser, 'passwordHash' | 'salt'> {
 }
 
 // -------------------------------------------------------------
-// 1. PESU OAUTH2 AUTHENTICATION (Vision2822/pesu-oauth2)
+// 1. PESU ACADEMY AUTHENTICATION (pesu-dev/auth)
 // -------------------------------------------------------------
 
-// GET /api/auth/pesu/authorize
-// Initiates OAuth 2.0 Authorization Code flow with PKCE
-apiRouter.get('/auth/pesu/authorize', async (req: Request, res: Response) => {
-  try {
-    const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
-    const host = req.headers['x-forwarded-host'] || req.get('host') || 'localhost:3000';
-    const defaultRedirectUri = `${protocol}://${host}/api/auth/callback`;
-    const redirectUri = (req.query.redirect_uri as string) || process.env.PESU_OAUTH_REDIRECT_URI || defaultRedirectUri;
-
-    const { codeVerifier, codeChallenge } = PesuOAuthService.generatePKCE();
-    const state = PesuOAuthService.generateState();
-
-    const ironSession = await getAppSession(req, res);
-    ironSession.codeVerifier = codeVerifier;
-    ironSession.oauthState = state;
-    await ironSession.save();
-
-    const authorizeUrl = PesuOAuthService.getAuthorizationUrl(redirectUri, state, codeChallenge);
-
-    if (req.headers.accept?.includes('application/json') || req.query.format === 'json') {
-      res.json({ authorizeUrl, state });
-    } else {
-      res.redirect(authorizeUrl);
-    }
-  } catch (error: any) {
-    res.status(500).json({ error: error.message || 'Failed to initiate OAuth authorization.' });
-  }
-});
-
-// GET /api/auth/callback
-// Handles OAuth 2.0 redirect callback with authorization code
-apiRouter.get('/auth/callback', async (req: Request, res: Response) => {
-  try {
-    const { code, state, error, error_description } = req.query;
-
-    if (error) {
-      const errorMsg = (error_description as string) || (error as string) || 'OAuth authentication was denied or cancelled.';
-      res.redirect(`/?error=${encodeURIComponent(errorMsg)}`);
-      return;
-    }
-
-    if (!code || typeof code !== 'string') {
-      res.redirect('/?error=' + encodeURIComponent('Missing OAuth authorization code in callback.'));
-      return;
-    }
-
-    const ironSession = await getAppSession(req, res);
-    const storedState = ironSession.oauthState;
-    const codeVerifier = ironSession.codeVerifier;
-
-    // Validate state if previously stored
-    if (storedState && state && state !== storedState) {
-      res.redirect('/?error=' + encodeURIComponent('Invalid OAuth state parameter. Please try signing in again.'));
-      return;
-    }
-
-    const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
-    const host = req.headers['x-forwarded-host'] || req.get('host') || 'localhost:3000';
-    const defaultRedirectUri = `${protocol}://${host}/api/auth/callback`;
-    const redirectUri = process.env.PESU_OAUTH_REDIRECT_URI || defaultRedirectUri;
-
-    // Exchange authorization code for tokens
-    const tokenResponse = await PesuOAuthService.exchangeCodeForTokens(
-      code,
-      redirectUri,
-      codeVerifier || ''
-    );
-
-    // Fetch student profile using access token
-    const profile = await PesuOAuthService.fetchUserProfile(tokenResponse.access_token);
-
-    // Synchronize user in local database
-    const { user, isFirstLogin } = PesuOAuthService.syncOAuthUser(profile);
-
-    // Create session in local database & iron-session
-    const session = Database.createSession(user.srn);
-    ironSession.srn = user.srn;
-    ironSession.token = session.token;
-    ironSession.name = user.name;
-    ironSession.email = user.email;
-    ironSession.isLoggedIn = true;
-    ironSession.codeVerifier = undefined;
-    ironSession.oauthState = undefined;
-    await ironSession.save();
-
-    const targetRoute = isFirstLogin ? 'onboarding' : 'discover';
-    res.redirect(`/?auth=success&token=${encodeURIComponent(session.token)}&route=${targetRoute}`);
-  } catch (err: any) {
-    console.error('[OAuth Callback Error]', err);
-    res.redirect(`/?error=${encodeURIComponent(err.message || 'OAuth authentication failed. Please try again.')}`);
-  }
-});
-
 // POST /api/auth/login
-// Direct credential login
+// Authenticates student credentials against pesu-dev/auth API (POST /authenticate)
 apiRouter.post('/auth/login', async (req: Request, res: Response) => {
   try {
     const { identifier, srn, username, password } = req.body;
@@ -281,9 +187,11 @@ apiRouter.post('/auth/login', async (req: Request, res: Response) => {
       return;
     }
 
+    // Authenticate via pesu-dev/auth API
     const authResult = await PesuAuthService.authenticate(lookupUsername, password);
     const authenticatedUser = authResult.user;
 
+    // Create session & save iron-session cookie
     const session = Database.createSession(authenticatedUser.srn);
     const ironSession = await getAppSession(req, res);
     ironSession.srn = authenticatedUser.srn;
@@ -302,6 +210,49 @@ apiRouter.post('/auth/login', async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res.status(401).json({ error: error.message || 'Authentication failed. Please check your PESU credentials.' });
+  }
+});
+
+// POST /api/auth/register
+// Registers a student account — requires valid PESU Academy credentials verified via pesu-dev/auth
+apiRouter.post('/auth/register', async (req: Request, res: Response) => {
+  try {
+    const { srn, password } = req.body;
+
+    if (!srn || typeof srn !== 'string' || !srn.trim()) {
+      res.status(400).json({ error: 'Valid PESU SRN is required (e.g. PES1UG23CS101).' });
+      return;
+    }
+
+    if (!password || typeof password !== 'string' || password.length < 6) {
+      res.status(400).json({ error: 'Password must be at least 6 characters long.' });
+      return;
+    }
+
+    // Registration goes through pesu-dev/auth just like login —
+    // this ensures only verified PESU students can create accounts
+    const authResult = await PesuAuthService.authenticate(srn, password);
+    const authenticatedUser = authResult.user;
+
+    // Create session & save iron-session cookie
+    const session = Database.createSession(authenticatedUser.srn);
+    const ironSession = await getAppSession(req, res);
+    ironSession.srn = authenticatedUser.srn;
+    ironSession.token = session.token;
+    ironSession.name = authenticatedUser.name;
+    ironSession.email = authenticatedUser.email;
+    ironSession.isLoggedIn = true;
+    await ironSession.save();
+
+    res.status(201).json({
+      message: 'PESU Student Account verified and registered successfully.',
+      token: session.token,
+      user: sanitizeUser(authenticatedUser),
+      isFirstLogin: authResult.isFirstLogin,
+      redirect: authResult.isFirstLogin ? '/onboarding' : '/discover',
+    });
+  } catch (error: any) {
+    res.status(401).json({ error: error.message || 'Registration failed. Could not verify PESU credentials.' });
   }
 });
 
@@ -729,7 +680,7 @@ apiRouter.get('/config', (_req: Request, res: Response) => {
     sihDeadline: process.env.SIH_REGISTRATION_DEADLINE || '2026-09-30T23:59:59.000Z',
     appName: 'PESquad',
     institution: 'PES University',
-    authProvider: 'Vision2822/pesu-oauth2',
+    authProvider: 'pesu-dev/auth',
     version: '1.0.0',
   });
 });

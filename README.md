@@ -4,7 +4,7 @@ PESquad is a modern teammate matchmaking and hackathon collaboration platform bu
 
 ## 🚀 Features
 
-- **PESU OAuth2 Authentication**: Transparent OAuth 2.0 PKCE authentication via [`Vision2822/pesu-oauth2`](https://github.com/Vision2822/pesu-oauth2) with PESU credentials and granular student profile consent.
+- **PESU Academy Authentication**: Verified student authentication via [`pesu-dev/auth`](https://github.com/pesu-dev/auth) with SRN/PRN and PESU credentials.
 - **Encrypted Session Persistence**: High-security encrypted session management with `iron-session` cookies.
 - **Student Hacker Discovery**: Filter peers by branch, semester, technical domains (Full Stack, AI/ML, Cloud, Web3, IoT), and hackathon experience.
 - **Squad Formation & Invites**: Direct team invitations with contact handshakes and status tracking.
@@ -16,7 +16,7 @@ PESquad is a modern teammate matchmaking and hackathon collaboration platform bu
 - **Frontend**: React 19, TypeScript, Tailwind CSS, Lucide Icons, Motion
 - **Backend API**: Express REST API with input validation and session middleware
 - **Session Layer**: `iron-session` sealed cookies
-- **Identity Provider**: `Vision2822/pesu-oauth2` (PESU OAuth 2.0 with PKCE)
+- **Identity Provider**: `pesu-dev/auth` (PESU Academy credentials API)
 - **Deployment**: Vercel & Supabase
 
 ## 📦 Getting Started
