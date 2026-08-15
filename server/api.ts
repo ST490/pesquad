@@ -49,10 +49,40 @@ export async function authMiddleware(
     return;
   }
 
-  const user = Database.getUserBySrn(srn);
+  let user = Database.getUserBySrn(srn);
+
+  // Handle serverless cold-start: session is valid but user record is missing
+  // in this container's in-memory DB (created in a different instance during login).
+  // Auto-create a stub record so the user isn't locked out; they'll fill in
+  // their full profile on the onboarding page.
   if (!user) {
-    res.status(401).json({ error: 'User account not found.' });
-    return;
+    try {
+      const ironSession = await getAppSession(req, res);
+      const stubUser: DbUser = {
+        srn: srn.toUpperCase(),
+        passwordHash: '',
+        salt: '',
+        name: ironSession.name || srn,
+        department: 'Computer Science and Engineering',
+        branch: 'CSE',
+        semester: 4,
+        campus: 'RR Campus',
+        email: ironSession.email || '',
+        photo_url: '',
+        hackathon_count: 0,
+        github_url: '',
+        interests: [],
+        skills: [],
+        bio: '',
+        looking_for_team: true,
+        preferred_roles: ['Full Stack Developer'],
+        created_at: new Date().toISOString(),
+      };
+      user = Database.createUser(stubUser);
+    } catch {
+      res.status(401).json({ error: 'User account not found. Please sign in again.' });
+      return;
+    }
   }
 
   req.user = user;
@@ -91,7 +121,36 @@ export async function optionalAuthMiddleware(
   }
 
   if (srn) {
-    const user = Database.getUserBySrn(srn);
+    let user = Database.getUserBySrn(srn);
+    if (!user) {
+      // Same cold-start recovery as authMiddleware
+      try {
+        const ironSession = await getAppSession(req, res);
+        const stubUser: DbUser = {
+          srn: srn.toUpperCase(),
+          passwordHash: '',
+          salt: '',
+          name: ironSession.name || srn,
+          department: 'Computer Science and Engineering',
+          branch: 'CSE',
+          semester: 4,
+          campus: 'RR Campus',
+          email: ironSession.email || '',
+          photo_url: '',
+          hackathon_count: 0,
+          github_url: '',
+          interests: [],
+          skills: [],
+          bio: '',
+          looking_for_team: true,
+          preferred_roles: ['Full Stack Developer'],
+          created_at: new Date().toISOString(),
+        };
+        user = Database.createUser(stubUser);
+      } catch {
+        // Ignore — optional auth, proceed unauthenticated
+      }
+    }
     if (user) {
       req.user = user;
       req.sessionToken = token;
