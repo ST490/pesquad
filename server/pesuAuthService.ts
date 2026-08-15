@@ -37,17 +37,22 @@ export class PesuAuthService {
     isFirstLogin: boolean;
     authSource: 'pesu-dev/auth' | 'local_db';
   }> {
-    const cleanUsername = username.trim();
+    const rawUsername = username.trim();
+    // Normalize SRN/PRN to uppercase (e.g. pes1ug25cs698 -> PES1UG25CS698)
+    const cleanUsername = rawUsername.toUpperCase().startsWith('PES')
+      ? rawUsername.toUpperCase()
+      : rawUsername;
     const pesuAuthUrl = this.getBaseUrl().replace(/\/+$/, '');
 
     let remoteAuthSucceeded = false;
     let studentProfile: PesuAuthProfile | undefined;
     let remoteErrorMessage = '';
+    let remoteReachable = false;
 
     // 1. Attempt authentication against pesu-dev/auth upstream endpoint
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
 
       const response = await fetch(`${pesuAuthUrl}/authenticate`, {
         method: 'POST',
@@ -64,6 +69,7 @@ export class PesuAuthService {
       });
 
       clearTimeout(timeoutId);
+      remoteReachable = true;
 
       if (response.ok) {
         const data = (await response.json()) as PesuAuthResponse;
@@ -151,9 +157,14 @@ export class PesuAuthService {
         const isFirst = !localUser.interests || localUser.interests.length === 0;
         return { user: localUser, isFirstLogin: isFirst, authSource: 'local_db' };
       }
+      throw new Error('Incorrect password for this PESU account. Please verify your password or use your registered credentials.');
     }
 
-    // If both failed, throw descriptive error
-    throw new Error(remoteErrorMessage || 'Invalid PESU Academy credentials. Please verify your SRN/PRN and password.');
+    // If both failed and user doesn't exist locally
+    if (!remoteReachable) {
+      throw new Error('PESU Academy authentication is currently unreachable. If you are new, please click "Register Account" to sign up.');
+    }
+
+    throw new Error(remoteErrorMessage || 'Invalid PESU Academy credentials. Please verify your SRN/PRN and password, or use "Register Account" to sign up.');
   }
 }
