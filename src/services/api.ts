@@ -44,7 +44,7 @@ interface RequestOptions extends RequestInit {
 }
 
 async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-  const { timeoutMs = 12000, headers = {}, ...restOptions } = options;
+  const { timeoutMs = 30000, headers = {}, ...restOptions } = options;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
