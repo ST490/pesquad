@@ -8,7 +8,7 @@
       "name": "SUFIYAN TATAGAR",
       "department": "Computer Science and Engineering",
       "branch": "CSE",
-      "semester": 3,
+      "semester": 4,
       "gender": "Male",
       "campus": "RR Campus",
       "email": "sufiyantatagar490@gmail.com",
@@ -18,7 +18,8 @@
       "github_url": "",
       "interests": [
         "Frontend",
-        "Backend"
+        "Backend",
+        "Full Stack"
       ],
       "skills": [
         "React",
@@ -33,6 +34,220 @@
       ],
       "created_at": "2026-08-14T20:35:30.654Z",
       "updated_at": "2026-08-14T20:35:54.679Z"
+    },
+    {
+      "srn": "PES1UG25CS309",
+      "prn": "PES1202502309",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Mohammed Yusuf Ahmed",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "yusuf.ahmed@pes.edu",
+      "phone": "8088421593",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/yusufahmed",
+      "interests": [
+        "Frontend",
+        "Backend",
+        "Full Stack",
+        "Cloud Computing"
+      ],
+      "skills": [
+        "Next.js",
+        "Python",
+        "Docker",
+        "FastAPI"
+      ],
+      "bio": "Experienced backend & systems architect looking for an enthusiastic team for SIH 2026.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Backend Developer",
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-14T21:00:00.000Z",
+      "updated_at": "2026-08-14T21:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25ME042",
+      "prn": "PES1202501042",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "SHREYAS SANJAY GAIKWAD",
+      "department": "Mechanical Engineering",
+      "branch": "ME",
+      "semester": 3,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "shreyas.gaikwad@pes.edu",
+      "phone": "9036296715",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/shreyasgaikwad",
+      "interests": [
+        "Computer Vision",
+        "Natural Language Processing",
+        "Robotics"
+      ],
+      "skills": [
+        "PyTorch",
+        "ROS",
+        "OpenCV",
+        "Python"
+      ],
+      "bio": "Self-driven builder and developer passionate about creating autonomous systems and AI hardware for SIH.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Hardware / IoT Specialist"
+      ],
+      "created_at": "2026-08-14T21:30:00.000Z",
+      "updated_at": "2026-08-14T21:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EE054",
+      "prn": "PES1202503054",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "MOHAMMAD SAFWAAN",
+      "department": "Electrical & Electronics",
+      "branch": "EEE",
+      "semester": 3,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "mohammad.safwaan@pes.edu",
+      "phone": "8317452496",
+      "photo_url": "",
+      "hackathon_count": 0,
+      "github_url": "",
+      "interests": [
+        "Frontend",
+        "Backend",
+        "IoT / Embedded"
+      ],
+      "skills": [
+        "Embedded C",
+        "JavaScript",
+        "Node.js"
+      ],
+      "bio": "Ready to contribute frontend UI and IoT device integration for smart hardware problem statements.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Frontend Developer",
+        "Hardware / IoT Specialist"
+      ],
+      "created_at": "2026-08-14T22:00:00.000Z",
+      "updated_at": "2026-08-14T22:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25AM513",
+      "prn": "PES1202505513",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "S BANUTEJA REDDY",
+      "department": "Computer Science and Engineering",
+      "branch": "AIML",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "banuteja.reddy@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 0,
+      "github_url": "",
+      "interests": [
+        "Frontend",
+        "Backend",
+        "Machine Learning"
+      ],
+      "skills": [
+        "TensorFlow",
+        "Python",
+        "React"
+      ],
+      "bio": "AI/ML enthusiast focused on predictive models and clean web interfaces for SIH 2026.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Backend Developer"
+      ],
+      "created_at": "2026-08-14T22:30:00.000Z",
+      "updated_at": "2026-08-14T22:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS696",
+      "prn": "PES1202504696",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Spandana B M",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "spandana.bm@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 0,
+      "github_url": "",
+      "interests": [
+        "Frontend",
+        "UI/UX Design",
+        "Cloud Computing"
+      ],
+      "skills": [
+        "Figma",
+        "React",
+        "CSS3",
+        "Tailwind"
+      ],
+      "bio": "UI/UX Designer and Frontend developer passionate about building intuitive user-centric apps for SIH.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "UI / UX Designer",
+        "Frontend Developer"
+      ],
+      "created_at": "2026-08-14T23:00:00.000Z",
+      "updated_at": "2026-08-14T23:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS716",
+      "prn": "PES1202504716",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "PESU Student (CS716)",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "pes1ug25cs716@pes.edu",
+      "phone": "",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "",
+      "interests": [
+        "Frontend",
+        "Backend",
+        "Mobile Development"
+      ],
+      "skills": [
+        "Flutter",
+        "TypeScript",
+        "Node.js"
+      ],
+      "bio": "Full Stack & Mobile developer eager to build innovative solutions for SIH 2026.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Full Stack Developer",
+        "Mobile Developer"
+      ],
+      "created_at": "2026-08-15T08:00:00.000Z",
+      "updated_at": "2026-08-15T08:00:00.000Z"
     }
   ],
   "posts": [],

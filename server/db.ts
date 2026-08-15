@@ -95,7 +95,7 @@ const DEFAULT_INITIAL_DB: DatabaseSchema = {
       name: 'SUFIYAN TATAGAR',
       department: 'Computer Science and Engineering',
       branch: 'CSE',
-      semester: 3,
+      semester: 4,
       gender: 'Male',
       campus: 'RR Campus',
       email: 'sufiyantatagar490@gmail.com',
@@ -103,13 +103,157 @@ const DEFAULT_INITIAL_DB: DatabaseSchema = {
       photo_url: '',
       hackathon_count: 3,
       github_url: '',
-      interests: ['Frontend', 'Backend'],
+      interests: ['Frontend', 'Backend', 'Full Stack'],
       skills: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS'],
       bio: 'Full Stack developer eager to build innovative solutions for SIH 2026.',
       looking_for_team: true,
       preferred_roles: ['Full Stack Developer'],
       created_at: '2026-08-14T20:35:30.654Z',
       updated_at: '2026-08-14T20:35:54.679Z',
+    },
+    {
+      srn: 'PES1UG25CS309',
+      prn: 'PES1202502309',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'Mohammed Yusuf Ahmed',
+      department: 'Computer Science and Engineering',
+      branch: 'CSE',
+      semester: 4,
+      gender: 'Male',
+      campus: 'RR Campus',
+      email: 'yusuf.ahmed@pes.edu',
+      phone: '8088421593',
+      photo_url: '',
+      hackathon_count: 4,
+      github_url: 'https://github.com/yusufahmed',
+      interests: ['Frontend', 'Backend', 'Full Stack', 'Cloud Computing'],
+      skills: ['Next.js', 'Python', 'Docker', 'FastAPI'],
+      bio: 'Experienced backend & systems architect looking for an enthusiastic team for SIH 2026.',
+      looking_for_team: true,
+      preferred_roles: ['Backend Developer', 'Full Stack Developer'],
+      created_at: '2026-08-14T21:00:00.000Z',
+      updated_at: '2026-08-14T21:00:00.000Z',
+    },
+    {
+      srn: 'PES1UG25ME042',
+      prn: 'PES1202501042',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'SHREYAS SANJAY GAIKWAD',
+      department: 'Mechanical Engineering',
+      branch: 'ME',
+      semester: 3,
+      gender: 'Male',
+      campus: 'RR Campus',
+      email: 'shreyas.gaikwad@pes.edu',
+      phone: '9036296715',
+      photo_url: '',
+      hackathon_count: 3,
+      github_url: 'https://github.com/shreyasgaikwad',
+      interests: ['Computer Vision', 'Natural Language Processing', 'Robotics'],
+      skills: ['PyTorch', 'ROS', 'OpenCV', 'Python'],
+      bio: 'Self-driven builder and developer passionate about creating autonomous systems and AI hardware for SIH.',
+      looking_for_team: true,
+      preferred_roles: ['AI / ML Engineer', 'Hardware / IoT Specialist'],
+      created_at: '2026-08-14T21:30:00.000Z',
+      updated_at: '2026-08-14T21:30:00.000Z',
+    },
+    {
+      srn: 'PES1UG25EE054',
+      prn: 'PES1202503054',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'MOHAMMAD SAFWAAN',
+      department: 'Electrical & Electronics',
+      branch: 'EEE',
+      semester: 3,
+      gender: 'Male',
+      campus: 'RR Campus',
+      email: 'mohammad.safwaan@pes.edu',
+      phone: '8317452496',
+      photo_url: '',
+      hackathon_count: 0,
+      github_url: '',
+      interests: ['Frontend', 'Backend', 'IoT / Embedded'],
+      skills: ['Embedded C', 'JavaScript', 'Node.js'],
+      bio: 'Ready to contribute frontend UI and IoT device integration for smart hardware problem statements.',
+      looking_for_team: true,
+      preferred_roles: ['Frontend Developer', 'Hardware / IoT Specialist'],
+      created_at: '2026-08-14T22:00:00.000Z',
+      updated_at: '2026-08-14T22:00:00.000Z',
+    },
+    {
+      srn: 'PES1UG25AM513',
+      prn: 'PES1202505513',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'S BANUTEJA REDDY',
+      department: 'Computer Science and Engineering',
+      branch: 'AIML',
+      semester: 4,
+      gender: 'Male',
+      campus: 'RR Campus',
+      email: 'banuteja.reddy@pes.edu',
+      phone: '',
+      photo_url: '',
+      hackathon_count: 0,
+      github_url: '',
+      interests: ['Frontend', 'Backend', 'Machine Learning'],
+      skills: ['TensorFlow', 'Python', 'React'],
+      bio: 'AI/ML enthusiast focused on predictive models and clean web interfaces for SIH 2026.',
+      looking_for_team: true,
+      preferred_roles: ['AI / ML Engineer', 'Backend Developer'],
+      created_at: '2026-08-14T22:30:00.000Z',
+      updated_at: '2026-08-14T22:30:00.000Z',
+    },
+    {
+      srn: 'PES1UG25CS696',
+      prn: 'PES1202504696',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'Spandana B M',
+      department: 'Computer Science and Engineering',
+      branch: 'CSE',
+      semester: 4,
+      gender: 'Female',
+      campus: 'RR Campus',
+      email: 'spandana.bm@pes.edu',
+      phone: '',
+      photo_url: '',
+      hackathon_count: 0,
+      github_url: '',
+      interests: ['Frontend', 'UI/UX Design', 'Cloud Computing'],
+      skills: ['Figma', 'React', 'CSS3', 'Tailwind'],
+      bio: 'UI/UX Designer and Frontend developer passionate about building intuitive user-centric apps for SIH.',
+      looking_for_team: true,
+      preferred_roles: ['UI / UX Designer', 'Frontend Developer'],
+      created_at: '2026-08-14T23:00:00.000Z',
+      updated_at: '2026-08-14T23:00:00.000Z',
+    },
+    {
+      srn: 'PES1UG25CS716',
+      prn: 'PES1202504716',
+      passwordHash: 'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+      salt: '6ba6e622de36c13856a706ed64d09842',
+      name: 'PESU Student (CS716)',
+      department: 'Computer Science and Engineering',
+      branch: 'CSE',
+      semester: 4,
+      gender: 'Male',
+      campus: 'RR Campus',
+      email: 'pes1ug25cs716@pes.edu',
+      phone: '',
+      photo_url: '',
+      hackathon_count: 1,
+      github_url: '',
+      interests: ['Frontend', 'Backend', 'Mobile Development'],
+      skills: ['Flutter', 'TypeScript', 'Node.js'],
+      bio: 'Full Stack & Mobile developer eager to build innovative solutions for SIH 2026.',
+      looking_for_team: true,
+      preferred_roles: ['Full Stack Developer', 'Mobile Developer'],
+      created_at: '2026-08-15T08:00:00.000Z',
+      updated_at: '2026-08-15T08:00:00.000Z',
     },
   ],
   posts: [],
@@ -173,6 +317,62 @@ function ensureDbFile(): DatabaseSchema {
   }
 }
 
+import { supabase, isSupabaseConfigured } from './supabase.js';
+
+function toSupabaseUser(user: DbUser): any {
+  return {
+    srn: user.srn.toUpperCase(),
+    prn: user.prn || null,
+    name: user.name,
+    password_hash: user.passwordHash || '',
+    salt: user.salt || '',
+    department: user.department || 'Computer Science and Engineering',
+    branch: user.branch || 'CSE',
+    semester: user.semester || 4,
+    gender: user.gender || 'Male',
+    campus: user.campus || 'RR Campus',
+    email: user.email || null,
+    phone: user.phone || null,
+    photo_url: user.photo_url || '',
+    hackathon_count: user.hackathon_count || 0,
+    github_url: user.github_url || '',
+    interests: user.interests || [],
+    skills: user.skills || [],
+    bio: user.bio || '',
+    looking_for_team: user.looking_for_team ?? true,
+    preferred_roles: user.preferred_roles || ['Full Stack Developer'],
+    created_at: user.created_at || new Date().toISOString(),
+    updated_at: user.updated_at || new Date().toISOString(),
+  };
+}
+
+function fromSupabaseUser(row: any): DbUser {
+  return {
+    srn: String(row.srn).toUpperCase(),
+    prn: row.prn || undefined,
+    passwordHash: row.password_hash || '',
+    salt: row.salt || '',
+    name: row.name || row.srn,
+    department: row.department || 'Computer Science and Engineering',
+    branch: row.branch || 'CSE',
+    semester: Number(row.semester) || 4,
+    gender: row.gender || 'Male',
+    campus: row.campus || 'RR Campus',
+    email: row.email || undefined,
+    phone: row.phone || undefined,
+    photo_url: row.photo_url || '',
+    hackathon_count: Number(row.hackathon_count) || 0,
+    github_url: row.github_url || '',
+    interests: Array.isArray(row.interests) ? row.interests : [],
+    skills: Array.isArray(row.skills) ? row.skills : [],
+    bio: row.bio || '',
+    looking_for_team: row.looking_for_team ?? true,
+    preferred_roles: Array.isArray(row.preferred_roles) ? row.preferred_roles : ['Full Stack Developer'],
+    created_at: row.created_at || new Date().toISOString(),
+    updated_at: row.updated_at || new Date().toISOString(),
+  };
+}
+
 export class Database {
   private static read(): DatabaseSchema {
     return ensureDbFile();
@@ -194,6 +394,16 @@ export class Database {
     }
   }
 
+  // Supabase Persistent Sync
+  static async syncUserToSupabase(user: DbUser): Promise<void> {
+    if (!isSupabaseConfigured() || !supabase) return;
+    try {
+      await supabase.from('users').upsert(toSupabaseUser(user), { onConflict: 'srn' });
+    } catch (e) {
+      console.warn('[Supabase User Sync Error]', e);
+    }
+  }
+
   // Password Security Helpers
   static hashPassword(password: string): { hash: string; salt: string } {
     const salt = crypto.randomBytes(16).toString('hex');
@@ -211,8 +421,59 @@ export class Database {
     return this.read().users;
   }
 
+  static async getUsersAsync(): Promise<DbUser[]> {
+    const db = this.read();
+    if (isSupabaseConfigured() && supabase) {
+      try {
+        const { data, error } = await supabase.from('users').select('*');
+        if (!error && Array.isArray(data) && data.length > 0) {
+          for (const row of data) {
+            const u = fromSupabaseUser(row);
+            const idx = db.users.findIndex((existing) => existing.srn.toUpperCase() === u.srn.toUpperCase());
+            if (idx >= 0) {
+              db.users[idx] = { ...db.users[idx], ...u };
+            } else {
+              db.users.push(u);
+            }
+          }
+          this.write(db);
+        }
+      } catch (e) {
+        console.warn('[Supabase Fetch Users Error]', e);
+      }
+    }
+    return db.users;
+  }
+
   static getUserBySrn(srn: string): DbUser | undefined {
     return this.read().users.find((u) => u.srn.toUpperCase() === srn.toUpperCase());
+  }
+
+  static async getUserBySrnAsync(srn: string): Promise<DbUser | undefined> {
+    const cleanSrn = srn.toUpperCase();
+    let user = this.getUserBySrn(cleanSrn);
+    if (user) return user;
+
+    if (isSupabaseConfigured() && supabase) {
+      try {
+        const { data, error } = await supabase.from('users').select('*').eq('srn', cleanSrn).maybeSingle();
+        if (!error && data) {
+          user = fromSupabaseUser(data);
+          const db = this.read();
+          const idx = db.users.findIndex((u) => u.srn.toUpperCase() === cleanSrn);
+          if (idx >= 0) {
+            db.users[idx] = user;
+          } else {
+            db.users.push(user);
+          }
+          this.write(db);
+          return user;
+        }
+      } catch (e) {
+        console.warn('[Supabase Fetch User By SRN Error]', e);
+      }
+    }
+    return undefined;
   }
 
   static getUserByEmail(email: string): DbUser | undefined {
@@ -234,10 +495,12 @@ export class Database {
     const db = this.read();
     const existingIndex = db.users.findIndex((u) => u.srn.toUpperCase() === user.srn.toUpperCase());
     if (existingIndex >= 0) {
-      throw new Error(`User with SRN ${user.srn} already exists`);
+      db.users[existingIndex] = user;
+    } else {
+      db.users.push(user);
     }
-    db.users.push(user);
     this.write(db);
+    this.syncUserToSupabase(user);
     return user;
   }
 
@@ -258,6 +521,7 @@ export class Database {
 
     db.users[index] = updated;
     this.write(db);
+    this.syncUserToSupabase(updated);
     return updated;
   }
 

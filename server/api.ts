@@ -339,7 +339,7 @@ apiRouter.post('/auth/logout', async (req: Request, res: Response) => {
 // -------------------------------------------------------------
 
 // GET /api/profiles
-apiRouter.get('/profiles', optionalAuthMiddleware, (req: AuthenticatedRequest, res: Response) => {
+apiRouter.get('/profiles', optionalAuthMiddleware, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const {
       search,
@@ -351,7 +351,7 @@ apiRouter.get('/profiles', optionalAuthMiddleware, (req: AuthenticatedRequest, r
       sortBy = 'experience',
     } = req.query;
 
-    let users = Database.getUsers();
+    let users = await Database.getUsersAsync();
 
     if (search && typeof search === 'string' && search.trim()) {
       const q = search.trim().toLowerCase();
@@ -409,10 +409,10 @@ apiRouter.get('/profiles', optionalAuthMiddleware, (req: AuthenticatedRequest, r
 });
 
 // GET /api/profiles/:srn
-apiRouter.get('/profiles/:srn', (req: Request, res: Response) => {
+apiRouter.get('/profiles/:srn', async (req: Request, res: Response) => {
   try {
     const srn = req.params.srn.toUpperCase();
-    const user = Database.getUserBySrn(srn);
+    const user = await Database.getUserBySrnAsync(srn);
     if (!user) {
       res.status(404).json({ error: `Hacker profile with SRN ${srn} not found.` });
       return;
