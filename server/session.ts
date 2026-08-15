@@ -7,6 +7,8 @@ export interface UserSessionData {
   name?: string;
   email?: string;
   isLoggedIn?: boolean;
+  codeVerifier?: string;
+  oauthState?: string;
 }
 
 export const sessionOptions = {

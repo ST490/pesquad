@@ -155,6 +155,15 @@ export const authApi = {
     return res;
   },
 
+  // Initiates Vision2822/pesu-oauth2 authorization flow
+  initiatePesuOAuth: (redirectUri?: string): void => {
+    let authUrl = `${API_BASE_URL}/auth/pesu/authorize`;
+    if (redirectUri) {
+      authUrl += `?redirect_uri=${encodeURIComponent(redirectUri)}`;
+    }
+    window.location.href = authUrl;
+  },
+
   getMe: async (): Promise<{ user: UserProfile }> => {
     return request<{ user: UserProfile }>('/auth/me');
   },
