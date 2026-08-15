@@ -45,12 +45,14 @@ export class PesuAuthService {
     const pesuAuthUrl = this.getBaseUrl().replace(/\/+$/, '');
 
     let remoteAuthSucceeded = false;
+    let remoteAuthRejected = false; // true if upstream explicitly said status: false
+    let upstreamReachable = false;
     let studentProfile: PesuAuthProfile | undefined;
 
-    // 1. Attempt fast authentication against pesu-dev/auth upstream endpoint (6s limit)
+    // 1. Authenticate against pesu-dev/auth upstream (45s timeout for Render cold starts)
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const timeoutId = setTimeout(() => controller.abort(), 45000);
 
       const response = await fetch(`${pesuAuthUrl}/authenticate`, {
         method: 'POST',
@@ -67,16 +69,24 @@ export class PesuAuthService {
       });
 
       clearTimeout(timeoutId);
+      upstreamReachable = true;
 
       if (response.ok) {
         const data = (await response.json()) as PesuAuthResponse;
         if (data.status && data.profile && data.profile.srn) {
           remoteAuthSucceeded = true;
           studentProfile = data.profile;
+        } else {
+          // Upstream responded but credentials were invalid
+          remoteAuthRejected = true;
         }
+      } else {
+        // Non-OK response (4xx/5xx) — upstream explicitly rejected
+        remoteAuthRejected = true;
       }
     } catch (networkError: any) {
-      console.warn(`[pesu-dev/auth] Fast check completed/bypassed: ${networkError.message}`);
+      console.warn(`[pesu-dev/auth] Upstream unreachable: ${networkError.message}`);
+      // upstreamReachable stays false — timeout or network failure
     }
 
     // 2. If remote auth succeeded, synchronize with local database
@@ -139,21 +149,27 @@ export class PesuAuthService {
       }
     }
 
-    // 3. Fallback: If user already exists in database, verify password
+    // 3. If upstream explicitly rejected credentials → wrong SRN or password
+    if (remoteAuthRejected) {
+      throw new Error(
+        'Invalid PESU Academy credentials. Please check your SRN/PRN and password.'
+      );
+    }
+
+    // 4. Upstream was unreachable (timeout/network) — try local DB cache
+    //    Only works for students who previously logged in successfully via pesu-dev/auth
     const localUser = Database.getUserByIdentifier(cleanUsername);
-    if (localUser) {
+    if (localUser && localUser.passwordHash && localUser.salt) {
       const isValid = Database.verifyPassword(password, localUser.passwordHash, localUser.salt);
       if (isValid) {
         const isFirst = !localUser.interests || localUser.interests.length === 0;
         return { user: localUser, isFirstLogin: isFirst, authSource: 'local_db' };
       }
-      throw new Error('Incorrect password. Please use your PESU Academy password to sign in.');
     }
 
-    // 4. No valid credentials found — reject the login attempt.
-    // We do NOT auto-create accounts for unverified students.
+    // 5. Upstream unreachable and no valid local cache — tell user to retry
     throw new Error(
-      'Could not verify your PESU Academy credentials. Please ensure you are using your correct SRN/PRN and PESU Academy password. If the PESU server is temporarily unavailable, please try again in a few minutes.'
+      'The PESU Academy verification server is currently starting up. Please wait 30 seconds and try again.'
     );
   }
 }

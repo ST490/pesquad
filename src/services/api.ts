@@ -117,6 +117,7 @@ export const authApi = {
     }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ identifier, password }),
+      timeoutMs: 50000, // Allow 50s for pesu-dev/auth cold starts
     });
 
     if (res.token) {
