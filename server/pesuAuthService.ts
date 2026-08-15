@@ -147,35 +147,13 @@ export class PesuAuthService {
         const isFirst = !localUser.interests || localUser.interests.length === 0;
         return { user: localUser, isFirstLogin: isFirst, authSource: 'local_db' };
       }
-      throw new Error('Incorrect password for this PESU account. Please verify your password or register on the Register tab.');
+      throw new Error('Incorrect password. Please use your PESU Academy password to sign in.');
     }
 
-    // 4. First-time student login when upstream is offline/slow:
-    // Seamlessly register the student with their SRN & chosen password
-    const { hash, salt } = Database.hashPassword(password);
-    const initialName = cleanUsername.toUpperCase();
-    const newUser: DbUser = {
-      srn: cleanUsername.toUpperCase(),
-      passwordHash: hash,
-      salt: salt,
-      name: initialName,
-      department: 'Computer Science and Engineering',
-      branch: 'CSE',
-      semester: 4,
-      campus: 'RR Campus',
-      email: `${initialName.toLowerCase()}@pes.edu`,
-      photo_url: '',
-      hackathon_count: 0,
-      github_url: '',
-      interests: [],
-      skills: [],
-      bio: '',
-      looking_for_team: true,
-      preferred_roles: ['Full Stack Developer'],
-      created_at: new Date().toISOString(),
-    };
-
-    const created = Database.createUser(newUser);
-    return { user: created, isFirstLogin: true, authSource: 'local_db' };
+    // 4. No valid credentials found — reject the login attempt.
+    // We do NOT auto-create accounts for unverified students.
+    throw new Error(
+      'Could not verify your PESU Academy credentials. Please ensure you are using your correct SRN/PRN and PESU Academy password. If the PESU server is temporarily unavailable, please try again in a few minutes.'
+    );
   }
 }

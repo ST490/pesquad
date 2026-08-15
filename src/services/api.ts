@@ -125,53 +125,33 @@ export const authApi = {
     return res;
   },
 
-  // Register New PESU Student Account
-  register: async (userData: {
-    srn: string;
-    prn?: string;
-    name: string;
-    password: string;
-    department: string;
-    semester: number;
-    gender?: 'Male' | 'Female' | 'Other';
-    campus?: 'RR Campus' | 'EC Campus';
-    email?: string;
-    phone?: string;
-    hackathon_count?: number;
-    interests?: string[];
-    skills?: string[];
-    bio?: string;
-  }): Promise<{
+  // Register — same as login but uses /auth/register endpoint
+  // Server verifies credentials against pesu-dev/auth before creating account
+  register: async (
+    srn: string,
+    password: string
+  ): Promise<{
     message: string;
     token: string;
     user: UserProfile;
     isFirstLogin: boolean;
-    redirect: '/onboarding';
+    redirect: '/onboarding' | '/discover';
   }> => {
     const res = await request<{
       message: string;
       token: string;
       user: UserProfile;
       isFirstLogin: boolean;
-      redirect: '/onboarding';
+      redirect: '/onboarding' | '/discover';
     }>('/auth/register', {
       method: 'POST',
-      body: JSON.stringify(userData),
+      body: JSON.stringify({ srn, password }),
     });
 
     if (res.token) {
       tokenStorage.set(res.token);
     }
     return res;
-  },
-
-  // Initiates full Vision2822/pesu-oauth2 authorization code flow
-  initiatePesuOAuth: (studentSrn?: string): void => {
-    let authUrl = `${API_BASE_URL}/auth/pesu/authorize`;
-    if (studentSrn) {
-      authUrl += `?student_srn=${encodeURIComponent(studentSrn)}`;
-    }
-    window.location.href = authUrl;
   },
 
   getMe: async (): Promise<{ user: UserProfile }> => {
@@ -342,14 +322,14 @@ export const configApi = {
     sihDeadline: string;
     appName: string;
     institution: string;
-    oauthProvider: string;
+    authProvider: string;
     version: string;
   }> => {
     return request<{
       sihDeadline: string;
       appName: string;
       institution: string;
-      oauthProvider: string;
+      authProvider: string;
       version: string;
     }>('/config');
   },

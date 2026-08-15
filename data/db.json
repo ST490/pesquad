@@ -248,6 +248,28 @@
       ],
       "created_at": "2026-08-15T08:00:00.000Z",
       "updated_at": "2026-08-15T08:00:00.000Z"
+    },
+    {
+      "srn": "SUF@GMAIL.COM",
+      "passwordHash": "eca6c35d64f6fa849263b7e5e6d76a2bbbe618813e19cc0acff06f884c1de275447a85b4c52c8d406cd6d14d395e00a40f14d2bd27288b2c07beba5961830b28",
+      "salt": "c8441a0fd35e30fadbda09a7e0ba8a3f",
+      "name": "SUF@GMAIL.COM",
+      "department": "Computer Science and Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "campus": "RR Campus",
+      "email": "suf@gmail.com@pes.edu",
+      "photo_url": "",
+      "hackathon_count": 0,
+      "github_url": "",
+      "interests": [],
+      "skills": [],
+      "bio": "",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-15T14:24:59.984Z"
     }
   ],
   "posts": [],
@@ -258,6 +280,12 @@
       "srn": "PES1UG25CS698",
       "createdAt": "2026-08-14T20:35:30.664Z",
       "expiresAt": "2026-08-21T20:35:30.664Z"
+    },
+    {
+      "token": "bff9a37fd312e6aba01765adcf946406d59c7189245d5fa504e05a7a19b4a1bc",
+      "srn": "SUF@GMAIL.COM",
+      "createdAt": "2026-08-15T14:24:59.996Z",
+      "expiresAt": "2026-08-22T14:24:59.996Z"
     }
   ]
 }

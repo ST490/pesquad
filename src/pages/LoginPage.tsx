@@ -9,48 +9,30 @@ import {
   Eye,
   EyeOff,
   GraduationCap,
-  User,
-  Building,
-  Mail,
   CheckCircle2,
   KeyRound,
+  ShieldCheck,
 } from 'lucide-react';
 import { UserProfile } from '../types';
 import { authApi, ApiError } from '../services/api';
 import { StorageService } from '../services/storageService';
 import { PESquadLogo } from '../components/PESquadLogo';
-import { PESU_DEPARTMENTS, CAMPUS_OPTIONS } from '../constants/pesuData';
 
 interface LoginPageProps {
   onLoginSuccess: (user: UserProfile, isFirstLogin?: boolean) => void;
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
-  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
-  
   // Login Form State (PESU ID & Password)
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Register Form State
-  const [regSrn, setRegSrn] = useState('');
-  const [regPrn, setRegPrn] = useState('');
-  const [regName, setRegName] = useState('');
-  const [regDepartment, setRegDepartment] = useState(PESU_DEPARTMENTS[0]);
-  const [regSemester, setRegSemester] = useState(4);
-  const [regGender, setRegGender] = useState<'Male' | 'Female' | 'Other'>('Male');
-  const [regCampus, setRegCampus] = useState<'RR Campus' | 'EC Campus'>('RR Campus');
-  const [regEmail, setRegEmail] = useState('');
-  const [regPassword, setRegPassword] = useState('');
-  const [regConfirmPassword, setRegConfirmPassword] = useState('');
-  const [showRegPassword, setShowRegPassword] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  // 1. Handle Login with PESU ID & Password
+  // Handle Login with PESU Academy credentials via pesu-dev/auth
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -58,12 +40,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
 
     const cleanId = identifier.trim();
     if (!cleanId) {
-      setErrorMessage('Please enter your PESU ID (SRN, PRN, or Email).');
+      setErrorMessage('Please enter your PESU SRN or PRN.');
       return;
     }
 
     if (!password) {
-      setErrorMessage('Please enter your PESU password.');
+      setErrorMessage('Please enter your PESU Academy password.');
       return;
     }
 
@@ -71,71 +53,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
     try {
       const res = await authApi.login(cleanId, password);
       StorageService.setCurrentUser(res.user);
-      onLoginSuccess(res.user, res.isFirstLogin);
-    } catch (err: any) {
-      if (err instanceof ApiError) {
-        setErrorMessage(err.message);
-      } else {
-        setErrorMessage(err.message || 'Authentication failed. Please verify your PESU credentials.');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // 2. Handle Student Registration
-  const handleRegisterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage(null);
-    setSuccessMessage(null);
-
-    const cleanSrn = regSrn.trim().toUpperCase();
-    const cleanName = regName.trim();
-
-    if (!cleanSrn) {
-      setErrorMessage('Please enter your PESU SRN (e.g. PES1UG23CS101).');
-      return;
-    }
-
-    if (!cleanName) {
-      setErrorMessage('Please enter your full name.');
-      return;
-    }
-
-    if (!regPassword || regPassword.length < 6) {
-      setErrorMessage('Password must be at least 6 characters long.');
-      return;
-    }
-
-    if (regPassword !== regConfirmPassword) {
-      setErrorMessage('Passwords do not match.');
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const res = await authApi.register({
-        srn: cleanSrn,
-        prn: regPrn.trim().toUpperCase() || undefined,
-        name: cleanName,
-        password: regPassword,
-        department: regDepartment,
-        semester: Number(regSemester),
-        gender: regGender,
-        campus: regCampus,
-        email: regEmail.trim().toLowerCase() || `${cleanName.toLowerCase().replace(/\s+/g, '')}.${cleanSrn.slice(-4).toLowerCase()}@pes.edu`,
-      });
-
-      StorageService.setCurrentUser(res.user);
-      setSuccessMessage('Account registered successfully! Redirecting...');
+      setSuccessMessage('Verified! Signing you in...');
       setTimeout(() => {
-        onLoginSuccess(res.user, true);
-      }, 500);
+        onLoginSuccess(res.user, res.isFirstLogin);
+      }, 400);
     } catch (err: any) {
       if (err instanceof ApiError) {
         setErrorMessage(err.message);
       } else {
-        setErrorMessage(err.message || 'Registration failed. Please check your details.');
+        setErrorMessage(err.message || 'Authentication failed. Please verify your PESU Academy credentials.');
       }
     } finally {
       setIsLoading(false);
@@ -190,40 +116,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             </p>
           </div>
 
-          {/* Mode Switcher Tabs */}
-          <div className="flex rounded-xl bg-white/5 p-1 border border-white/10 mb-6">
-            <button
-              type="button"
-              onClick={() => {
-                setAuthMode('login');
-                setErrorMessage(null);
-                setSuccessMessage(null);
-              }}
-              className={`flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
-                authMode === 'login'
-                  ? 'bg-[#f78900] text-black font-bold shadow-md'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <KeyRound className="w-4 h-4" />
-              <span>PESU Sign In</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setAuthMode('register');
-                setErrorMessage(null);
-                setSuccessMessage(null);
-              }}
-              className={`flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
-                authMode === 'register'
-                  ? 'bg-[#f78900] text-black font-bold shadow-md'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <User className="w-4 h-4" />
-              <span>Register Account</span>
-            </button>
+          {/* PESU Academy Auth Badge */}
+          <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-emerald-950/40 border border-emerald-500/20 mb-6">
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <span className="text-[11px] font-semibold text-emerald-300">
+              Verified via PESU Academy (pesu-dev/auth)
+            </span>
           </div>
 
           {/* Alerts */}
@@ -247,280 +145,90 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             </div>
           )}
 
-          {/* TAB 1: PESU CREDENTIALS LOGIN */}
-          {authMode === 'login' && (
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
-                  PESU ID (SRN / PRN / Email) *
-                </label>
-                <div className="relative">
-                  <GraduationCap className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    id="input-pesu-id"
-                    type="text"
-                    value={identifier}
-                    onChange={(e) => setIdentifier(e.target.value)}
-                    placeholder="e.g. PES1UG23CS101 or PES1202301101"
-                    className="w-full glass-input pl-10 pr-4 py-2.5 text-xs sm:text-sm font-mono tracking-wide"
-                    disabled={isLoading}
-                    autoComplete="username"
-                    required
-                  />
-                </div>
+          {/* PESU CREDENTIALS LOGIN FORM */}
+          <form onSubmit={handleLoginSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
+                PESU SRN or PRN *
+              </label>
+              <div className="relative">
+                <GraduationCap className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  id="input-pesu-id"
+                  type="text"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  placeholder="e.g. PES1UG23CS101 or PES1202301101"
+                  className="w-full glass-input pl-10 pr-4 py-2.5 text-xs sm:text-sm font-mono tracking-wide"
+                  disabled={isLoading}
+                  autoComplete="username"
+                  required
+                />
               </div>
+            </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
-                  PESU Password *
-                </label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    id="input-pesu-password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
-                    className="w-full glass-input pl-10 pr-11 py-2.5 text-xs sm:text-sm"
-                    disabled={isLoading}
-                    autoComplete="current-password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
+            <div>
+              <label className="block text-xs font-semibold text-[#ffeabb] mb-1.5">
+                PESU Academy Password *
+              </label>
+              <div className="relative">
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  id="input-pesu-password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Your PESU Academy login password"
+                  className="w-full glass-input pl-10 pr-11 py-2.5 text-xs sm:text-sm"
+                  disabled={isLoading}
+                  autoComplete="current-password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
+            </div>
 
-              {/* Submit Button */}
-              <button
-                id="btn-pesu-login"
-                type="submit"
-                disabled={isLoading}
-                className="w-full btn-primary py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-2.5 shadow-xl transition-all mt-5"
-              >
-                {isLoading ? (
-                  <div className="flex items-center gap-2 text-black">
-                    <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                    <span>Signing in with PESU credentials...</span>
-                  </div>
-                ) : (
-                  <>
-                    <span>Sign In with PESU</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-
-          {/* TAB 2: STUDENT REGISTRATION */}
-          {authMode === 'register' && (
-            <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    PESU SRN *
-                  </label>
-                  <input
-                    type="text"
-                    value={regSrn}
-                    onChange={(e) => setRegSrn(e.target.value)}
-                    placeholder="PES1UG23CS101"
-                    className="w-full glass-input px-3 py-2 text-xs uppercase font-mono"
-                    disabled={isLoading}
-                    required
-                  />
+            {/* Submit Button */}
+            <button
+              id="btn-pesu-login"
+              type="submit"
+              disabled={isLoading}
+              className="w-full btn-primary py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-2.5 shadow-xl transition-all mt-5"
+            >
+              {isLoading ? (
+                <div className="flex items-center gap-2 text-black">
+                  <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  <span>Verifying with PESU Academy...</span>
                 </div>
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    PESU PRN (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    value={regPrn}
-                    onChange={(e) => setRegPrn(e.target.value)}
-                    placeholder="PES1202301101"
-                    className="w-full glass-input px-3 py-2 text-xs uppercase font-mono"
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
+              ) : (
+                <>
+                  <KeyRound className="w-4 h-4" />
+                  <span>Sign In with PESU Academy</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
 
-              <div>
-                <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                  Full Name *
-                </label>
-                <div className="relative">
-                  <User className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={regName}
-                    onChange={(e) => setRegName(e.target.value)}
-                    placeholder="e.g. Sufiyan Ahmed"
-                    className="w-full glass-input pl-9 pr-3 py-2 text-xs"
-                    disabled={isLoading}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    Department *
-                  </label>
-                  <div className="relative">
-                    <Building className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                    <select
-                      value={regDepartment}
-                      onChange={(e) => setRegDepartment(e.target.value)}
-                      className="w-full glass-input pl-9 pr-3 py-2 text-xs bg-[#121218]"
-                      disabled={isLoading}
-                    >
-                      {PESU_DEPARTMENTS.map((dept) => (
-                        <option key={dept} value={dept} className="bg-[#121218] text-white">
-                          {dept}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    Semester, Campus & Gender *
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    <select
-                      value={regSemester}
-                      onChange={(e) => setRegSemester(Number(e.target.value))}
-                      className="w-full glass-input px-2 py-2 text-xs bg-[#121218]"
-                      disabled={isLoading}
-                    >
-                      {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-                        <option key={sem} value={sem} className="bg-[#121218] text-white">
-                          Sem {sem}
-                        </option>
-                      ))}
-                    </select>
-                    <select
-                      value={regCampus}
-                      onChange={(e) => setRegCampus(e.target.value as any)}
-                      className="w-full glass-input px-2 py-2 text-xs bg-[#121218]"
-                      disabled={isLoading}
-                    >
-                      {CAMPUS_OPTIONS.map((c) => (
-                        <option key={c} value={c} className="bg-[#121218] text-white">
-                          {c}
-                        </option>
-                      ))}
-                    </select>
-                    <select
-                      value={regGender}
-                      onChange={(e) => setRegGender(e.target.value as any)}
-                      className="w-full glass-input px-2 py-2 text-xs bg-[#121218] font-medium text-[#ffeabb]"
-                      disabled={isLoading}
-                    >
-                      <option value="Male" className="bg-[#121218] text-white">👨 Male</option>
-                      <option value="Female" className="bg-[#121218] text-white">👩 Female</option>
-                      <option value="Other" className="bg-[#121218] text-white">🧑 Other</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                  PESU Email (Optional)
-                </label>
-                <div className="relative">
-                  <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="email"
-                    value={regEmail}
-                    onChange={(e) => setRegEmail(e.target.value)}
-                    placeholder="student.dept@pes.edu"
-                    className="w-full glass-input pl-9 pr-3 py-2 text-xs"
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    Password *
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showRegPassword ? 'text' : 'password'}
-                      value={regPassword}
-                      onChange={(e) => setRegPassword(e.target.value)}
-                      placeholder="Min 6 chars"
-                      className="w-full glass-input px-3 py-2 text-xs"
-                      disabled={isLoading}
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowRegPassword(!showRegPassword)}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
-                    >
-                      {showRegPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-[11px] font-semibold text-[#ffeabb] mb-1">
-                    Confirm Password *
-                  </label>
-                  <input
-                    type="password"
-                    value={regConfirmPassword}
-                    onChange={(e) => setRegConfirmPassword(e.target.value)}
-                    placeholder="Re-enter password"
-                    className="w-full glass-input px-3 py-2 text-xs"
-                    disabled={isLoading}
-                    required
-                  />
-                </div>
-              </div>
-
-              <button
-                id="btn-pesu-register"
-                type="submit"
-                disabled={isLoading}
-                className="w-full btn-primary py-3 px-6 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xl transition-all mt-4"
-              >
-                {isLoading ? (
-                  <div className="flex items-center gap-2 text-black">
-                    <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                    <span>Registering PESU Account...</span>
-                  </div>
-                ) : (
-                  <>
-                    <span>Register & Join SIH Squads</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-
-          {/* Security Footer */}
-          <div className="mt-6 pt-4 border-t border-white/10 text-center space-y-1">
+          {/* Info Footer */}
+          <div className="mt-6 pt-4 border-t border-white/10 text-center space-y-2">
             <div className="flex items-center justify-center gap-1.5 text-slate-400 text-xs font-mono">
               <Lock className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Encrypted Session Cookie & PBKDF2 Hashed</span>
+              <span>Encrypted Session • Credentials never stored</span>
             </div>
+            <p className="text-[10px] text-slate-500 leading-relaxed">
+              Sign in with your official PESU Academy credentials (SRN/PRN + password).
+              <br />
+              Your password is verified directly with PESU Academy and is never stored by PESquad.
+            </p>
             <p className="text-[10px] text-slate-500">
-              Only verified PES University students may participate in SIH squad matchmaking.
+              First time? Just sign in — your account will be created automatically.
             </p>
           </div>
         </GlassCard>

@@ -214,25 +214,10 @@ apiRouter.post('/auth/login', async (req: Request, res: Response) => {
 });
 
 // POST /api/auth/register
-// Registers a student account with verified PESU details
+// Registers a student account — requires valid PESU Academy credentials verified via pesu-dev/auth
 apiRouter.post('/auth/register', async (req: Request, res: Response) => {
   try {
-    const {
-      srn,
-      prn,
-      name,
-      password,
-      department,
-      semester,
-      gender,
-      campus,
-      email,
-      phone,
-      hackathon_count,
-      interests,
-      skills,
-      bio,
-    } = req.body;
+    const { srn, password } = req.body;
 
     if (!srn || typeof srn !== 'string' || !srn.trim()) {
       res.status(400).json({ error: 'Valid PESU SRN is required (e.g. PES1UG23CS101).' });
@@ -244,64 +229,30 @@ apiRouter.post('/auth/register', async (req: Request, res: Response) => {
       return;
     }
 
-    if (!name || typeof name !== 'string' || !name.trim()) {
-      res.status(400).json({ error: 'Full Student Name is required.' });
-      return;
-    }
+    // Registration goes through pesu-dev/auth just like login —
+    // this ensures only verified PESU students can create accounts
+    const authResult = await PesuAuthService.authenticate(srn, password);
+    const authenticatedUser = authResult.user;
 
-    const cleanSrn = srn.trim().toUpperCase();
-    const existing = Database.getUserBySrn(cleanSrn);
-    if (existing) {
-      res.status(409).json({
-        error: `An account with SRN ${cleanSrn} already exists. Please sign in with your password.`,
-      });
-      return;
-    }
-
-    const { hash, salt } = Database.hashPassword(password);
-    const newUser: DbUser = {
-      srn: cleanSrn,
-      prn: prn ? prn.trim().toUpperCase() : undefined,
-      passwordHash: hash,
-      salt: salt,
-      name: name.trim(),
-      department: department || 'Computer Science & Engineering',
-      branch: department ? department.split(' ')[0] : 'CSE',
-      semester: semester ? Number(semester) : 4,
-      gender: gender === 'Female' ? 'Female' : gender === 'Other' ? 'Other' : 'Male',
-      campus: campus === 'EC Campus' ? 'EC Campus' : 'RR Campus',
-      email: email ? email.trim().toLowerCase() : `${name.toLowerCase().replace(/\s+/g, '')}.${cleanSrn.slice(-4).toLowerCase()}@pes.edu`,
-      phone: phone ? phone.trim() : undefined,
-      photo_url: '',
-      hackathon_count: hackathon_count ? Math.max(0, Number(hackathon_count)) : 0,
-      github_url: '',
-      interests: interests && Array.isArray(interests) ? interests : [],
-      skills: skills && Array.isArray(skills) ? skills : [],
-      bio: bio ? String(bio).trim() : '',
-      looking_for_team: true,
-      preferred_roles: ['Full Stack Developer'],
-      created_at: new Date().toISOString(),
-    };
-
-    const created = Database.createUser(newUser);
-    const session = Database.createSession(cleanSrn);
+    // Create session & save iron-session cookie
+    const session = Database.createSession(authenticatedUser.srn);
     const ironSession = await getAppSession(req, res);
-    ironSession.srn = cleanSrn;
+    ironSession.srn = authenticatedUser.srn;
     ironSession.token = session.token;
-    ironSession.name = created.name;
-    ironSession.email = created.email;
+    ironSession.name = authenticatedUser.name;
+    ironSession.email = authenticatedUser.email;
     ironSession.isLoggedIn = true;
     await ironSession.save();
 
     res.status(201).json({
-      message: 'PESU Student Account registered successfully.',
+      message: 'PESU Student Account verified and registered successfully.',
       token: session.token,
-      user: sanitizeUser(created),
-      isFirstLogin: true,
-      redirect: '/onboarding',
+      user: sanitizeUser(authenticatedUser),
+      isFirstLogin: authResult.isFirstLogin,
+      redirect: authResult.isFirstLogin ? '/onboarding' : '/discover',
     });
   } catch (error: any) {
-    res.status(500).json({ error: error.message || 'Registration failed.' });
+    res.status(401).json({ error: error.message || 'Registration failed. Could not verify PESU credentials.' });
   }
 });
 
