@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { UserProfile } from '../types';
 import { profileApi, ApiError } from '../services/api';
 import { PersonCard } from '../components/PersonCard';
+import FadeContent from '../components/FadeContent';
 import { ProfileModal } from '../components/ProfileModal';
 import { SkeletonGrid } from '../components/SkeletonLoader';
 import { GlassCard } from '../components/GlassCard';
@@ -508,13 +509,20 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
       ) : filteredProfiles.length > 0 ? (
         /* Profiles Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {filteredProfiles.map((profile) => (
-            <PersonCard
+          {filteredProfiles.map((profile, index) => (
+            <FadeContent
               key={profile.srn}
-              profile={profile}
-              isCurrentUser={profile.srn === currentUser.srn}
-              onClick={() => setSelectedProfile(profile)}
-            />
+              blur={true}
+              duration={800}
+              easing="ease-out"
+              initialOpacity={0}
+            >
+              <PersonCard
+                profile={profile}
+                isCurrentUser={profile.srn === currentUser.srn}
+                onClick={() => setSelectedProfile(profile)}
+              />
+            </FadeContent>
           ))}
         </div>
       ) : (

@@ -33,10 +33,15 @@ export const PersonCard: React.FC<PersonCardProps> = ({
               alt={profile.name}
               className="w-16 h-16 rounded-full object-cover border-2 border-white/20 group-hover:border-[#f78900] transition-colors duration-300 shadow-md"
             />
-            {profile.looking_for_team && (
+            {profile.looking_for_team ? (
               <span
                 className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-black shadow"
                 title="Actively looking for squad"
+              />
+            ) : (
+              <span
+                className="absolute -bottom-1 -right-1 w-4 h-4 bg-slate-500 rounded-full border-2 border-black shadow"
+                title="Not actively looking for squad"
               />
             )}
           </div>
