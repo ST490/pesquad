@@ -77,7 +77,7 @@ CREATE INDEX IF NOT EXISTS idx_posts_author ON public.posts(author_srn);
 CREATE INDEX IF NOT EXISTS idx_invites_to ON public.invites(to_srn);
 CREATE INDEX IF NOT EXISTS idx_invites_from ON public.invites(from_srn);
 
--- 5. Seed all 40 PES University student hacker profiles
+-- 5. Seed all 55 PES University student hacker profiles
 INSERT INTO public.users (
   srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
 ) VALUES (
@@ -1428,6 +1428,516 @@ INSERT INTO public.users (
   ARRAY['AI / ML Engineer', 'Team Lead'],
   '2026-08-16T00:30:00.000Z',
   '2026-08-16T00:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG24CS402',
+  'PES1202402402',
+  'Aditi Deshpande',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  6,
+  'Female',
+  'RR Campus',
+  'aditi.deshpande@pes.edu',
+  '9920334455',
+  4,
+  'https://github.com/aditideshpande',
+  ARRAY['Full Stack', 'Frontend', 'Backend'],
+  ARRAY['Next.js', 'TypeScript', 'Apollo GraphQL', 'PostgreSQL', 'Tailwind CSS'],
+  'Full stack engineer building rapid, type-safe web portals and real-time collaborative dashboards for SIH.',
+  true,
+  ARRAY['Full Stack Developer', 'Team Lead'],
+  '2026-08-16T01:00:00.000Z',
+  '2026-08-16T01:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25EC115',
+  'PES1202501115',
+  'Manoj Kumar K',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Electronics & Communication',
+  'ECE',
+  4,
+  'Male',
+  'RR Campus',
+  'manoj.kumar@pes.edu',
+  '9920445566',
+  2,
+  'https://github.com/manojkumar-ece',
+  ARRAY['IoT & Robotics', 'Embedded Systems', 'Computer Vision'],
+  ARRAY['ROS 2', 'C++', 'SLAM', 'LiDAR', 'Python'],
+  'Autonomous navigation and SLAM robotics developer working on LiDAR-based mapping for search & rescue themes.',
+  true,
+  ARRAY['Hardware / Embedded Systems Lead', 'AI / ML Engineer'],
+  '2026-08-16T01:30:00.000Z',
+  '2026-08-16T01:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25AM308',
+  'PES1202503308',
+  'Tanmayee Bhat',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'AI & Machine Learning',
+  'AIML',
+  4,
+  'Female',
+  'RR Campus',
+  'tanmayee.bhat@pes.edu',
+  '9920556677',
+  3,
+  'https://github.com/tanmayeebhat',
+  ARRAY['Machine Learning', 'Natural Language Processing', 'Full Stack'],
+  ARRAY['LangChain', 'OpenAI API', 'Streamlit', 'ChromaDB', 'Python'],
+  'AI solutions builder creating intelligent domain chatbots, document question-answering systems, and RAG pipelines.',
+  true,
+  ARRAY['AI / ML Engineer', 'Full Stack Developer'],
+  '2026-08-16T02:00:00.000Z',
+  '2026-08-16T02:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG24ME091',
+  'PES1202401091',
+  'Abhishek N',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Mechanical Engineering',
+  'ME',
+  6,
+  'Male',
+  'EC Campus',
+  'abhishek.n@pes.edu',
+  '9920667788',
+  3,
+  'https://github.com/abhishekn-me',
+  ARRAY['IoT & Robotics', 'Embedded Systems', 'Domain / Pitch Specialist'],
+  ARRAY['ANSYS Fluent', 'PX4', 'SolidWorks', 'C++', 'Aerodynamics'],
+  'UAV airframe and propulsion engineer with experience designing delivery drones and thermal flow analysis.',
+  true,
+  ARRAY['Hardware / Embedded Systems Lead', 'Domain / Pitch Specialist'],
+  '2026-08-16T02:30:00.000Z',
+  '2026-08-16T02:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25CS330',
+  'PES1202502330',
+  'Siddhartha Roy',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  4,
+  'Male',
+  'EC Campus',
+  'siddhartha.roy@pes.edu',
+  '9920778899',
+  2,
+  'https://github.com/siddhartharoy',
+  ARRAY['Backend', 'Cloud & DevOps', 'Data Engineering'],
+  ARRAY['Go', 'Redis', 'RabbitMQ', 'Docker', 'MongoDB'],
+  'Backend systems engineer focused on high-speed event streaming, task queues, and resilient database replication.',
+  true,
+  ARRAY['Backend Specialist', 'Full Stack Developer'],
+  '2026-08-16T03:00:00.000Z',
+  '2026-08-16T03:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25BT058',
+  'PES1202503058',
+  'Anwita Rao',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Biotechnology',
+  'BT',
+  4,
+  'Female',
+  'RR Campus',
+  'anwita.rao@pes.edu',
+  '9920889900',
+  2,
+  'https://github.com/anwitarao',
+  ARRAY['Domain / Pitch Specialist', 'Data Engineering', 'Machine Learning'],
+  ARRAY['Python', 'R', 'Biopython', 'Data Analytics', 'Genomics'],
+  'Biotechnology enthusiast applying data science and synthetic biology for water safety and pathogen identification.',
+  true,
+  ARRAY['Domain / Pitch Specialist', 'Data Scientist / Analyst'],
+  '2026-08-16T03:30:00.000Z',
+  '2026-08-16T03:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG24EE049',
+  'PES1202401049',
+  'Rohit Krishnan',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Electrical & Electronics',
+  'EEE',
+  6,
+  'Male',
+  'RR Campus',
+  'rohit.krishnan@pes.edu',
+  '9930001122',
+  3,
+  'https://github.com/rohitkrishnan-ee',
+  ARRAY['Embedded Systems', 'IoT & Robotics', 'Hardware / Embedded Systems Lead'],
+  ARRAY['Embedded C', 'MATLAB', 'CAN Bus', 'KiCad', 'STM32'],
+  'Automotive telemetry and BMS hardware engineer specializing in vehicle control units and industrial CAN buses.',
+  true,
+  ARRAY['Hardware / Embedded Systems Lead'],
+  '2026-08-16T04:00:00.000Z',
+  '2026-08-16T04:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25DE042',
+  'PES1202504042',
+  'Nandita Iyer',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Design & Architecture',
+  'DES',
+  4,
+  'Female',
+  'RR Campus',
+  'nandita.iyer@pes.edu',
+  '9930112233',
+  3,
+  'https://github.com/nanditaiyer',
+  ARRAY['UI/UX Design', 'Frontend', 'AR / VR'],
+  ARRAY['Figma', 'After Effects', 'Lottie', 'Tailwind CSS', 'User Journey Mapping'],
+  'Product designer and motion specialist designing micro-interactions and high-converting presentation decks.',
+  true,
+  ARRAY['UI/UX Designer', 'Domain / Pitch Specialist'],
+  '2026-08-16T04:30:00.000Z',
+  '2026-08-16T04:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG26CS110',
+  'PES1202602110',
+  'Varun Shenoy',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  2,
+  'Male',
+  'RR Campus',
+  'varun.shenoy@pes.edu',
+  '9930223344',
+  1,
+  'https://github.com/varunshenoy',
+  ARRAY['Backend', 'Data Engineering', 'Full Stack'],
+  ARRAY['C++', 'Python', 'Competitive Programming', 'Graph Algorithms'],
+  'Algorithm and graph optimization specialist passionate about routing algorithms and high performance computing.',
+  true,
+  ARRAY['Backend Specialist', 'Full Stack Developer'],
+  '2026-08-16T05:00:00.000Z',
+  '2026-08-16T05:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG24AM415',
+  'PES1202404415',
+  'Kavitha Sundar',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'AI & Machine Learning',
+  'AIML',
+  6,
+  'Female',
+  'EC Campus',
+  'kavitha.sundar@pes.edu',
+  '9930334455',
+  4,
+  'https://github.com/kavithasundar',
+  ARRAY['Computer Vision', 'Deep Learning', 'Cloud & DevOps'],
+  ARRAY['PyTorch', 'OpenCV', 'TensorRT', 'FastAPI', 'Docker'],
+  'Real-time AI video analytics and edge inference expert. Optimizing vision models for sub-20ms latency.',
+  true,
+  ARRAY['AI / ML Engineer', 'Team Lead'],
+  '2026-08-16T05:30:00.000Z',
+  '2026-08-16T05:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25CS780',
+  'PES1202503780',
+  'Prateek Hegde',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  4,
+  'Male',
+  'RR Campus',
+  'prateek.hegde@pes.edu',
+  '9930445566',
+  4,
+  'https://github.com/prateekhegde',
+  ARRAY['Cloud & DevOps', 'Backend', 'Data Engineering'],
+  ARRAY['Kubernetes', 'Helm', 'Prometheus', 'Grafana', 'Terraform', 'AWS'],
+  'Site reliability and cloud DevOps specialist creating self-healing infrastructure, observability dashboards, and load-tested clusters.',
+  true,
+  ARRAY['Backend Specialist', 'Team Lead'],
+  '2026-08-16T06:00:00.000Z',
+  '2026-08-16T06:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25EC420',
+  'PES1202504420',
+  'Meghana Murthy',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Electronics & Communication',
+  'ECE',
+  4,
+  'Female',
+  'EC Campus',
+  'meghana.murthy@pes.edu',
+  '9930556677',
+  2,
+  'https://github.com/meghanamurthy',
+  ARRAY['Embedded Systems', 'IoT & Robotics', 'Mobile App (Flutter/React Native)'],
+  ARRAY['ESP32', 'Nordic nRF52', 'BLE', 'Embedded C', 'MQTT'],
+  'Bluetooth Low Energy (BLE) and wearables developer connecting low-power smart hardware to mobile companion apps.',
+  true,
+  ARRAY['Hardware / Embedded Systems Lead', 'Full Stack Developer'],
+  '2026-08-16T06:30:00.000Z',
+  '2026-08-16T06:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG24CS670',
+  'PES1202403670',
+  'Vikas Chandran',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  6,
+  'Male',
+  'RR Campus',
+  'vikas.chandran@pes.edu',
+  '9930667788',
+  3,
+  'https://github.com/vikaschandran',
+  ARRAY['Blockchain & Web3', 'Cybersecurity', 'Full Stack'],
+  ARRAY['Solidity', 'Circom', 'Hardhat', 'Ethers.js', 'Next.js'],
+  'Zero knowledge proof and blockchain privacy researcher creating tamper-proof citizen verification protocols.',
+  true,
+  ARRAY['Full Stack Developer', 'Backend Specialist'],
+  '2026-08-16T07:00:00.000Z',
+  '2026-08-16T07:00:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG25AM190',
+  'PES1202501190',
+  'Aakash Somasekhar',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'AI & Machine Learning',
+  'AIML',
+  4,
+  'Male',
+  'RR Campus',
+  'aakash.soma@pes.edu',
+  '9930778899',
+  2,
+  'https://github.com/aakashsomasekhar',
+  ARRAY['Natural Language Processing', 'Data Engineering', 'Machine Learning'],
+  ARRAY['Neo4j', 'LangChain', 'SentenceTransformers', 'Python', 'FastAPI'],
+  'Knowledge graph architect combining graph databases with vector embeddings for hallucination-free legal and scientific research.',
+  true,
+  ARRAY['AI / ML Engineer', 'Backend Specialist'],
+  '2026-08-16T07:30:00.000Z',
+  '2026-08-16T07:30:00.000Z'
+) ON CONFLICT (srn) DO UPDATE SET
+  name = EXCLUDED.name,
+  phone = EXCLUDED.phone,
+  email = EXCLUDED.email,
+  hackathon_count = EXCLUDED.hackathon_count,
+  skills = EXCLUDED.skills,
+  interests = EXCLUDED.interests,
+  bio = EXCLUDED.bio,
+  looking_for_team = EXCLUDED.looking_for_team;
+
+INSERT INTO public.users (
+  srn, prn, name, password_hash, salt, department, branch, semester, gender, campus, email, phone, hackathon_count, github_url, interests, skills, bio, looking_for_team, preferred_roles, created_at, updated_at
+) VALUES (
+  'PES1UG23CS290',
+  'PES1202303290',
+  'Shreya Narayanan',
+  'a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b',
+  '6ba6e622de36c13856a706ed64d09842',
+  'Computer Science & Engineering',
+  'CSE',
+  8,
+  'Female',
+  'RR Campus',
+  'shreya.narayanan@pes.edu',
+  '9930889900',
+  6,
+  'https://github.com/shreyanarayanan',
+  ARRAY['Full Stack', 'Cloud & DevOps', 'UI/UX Design'],
+  ARRAY['React', 'Node.js', 'Microservices', 'System Design', 'CI/CD'],
+  'Senior 4th year team captain, 6x hackathon winner, and full stack lead experienced in building complete end-to-end hackathon solutions.',
+  true,
+  ARRAY['Team Lead', 'Full Stack Developer'],
+  '2026-08-16T08:00:00.000Z',
+  '2026-08-16T08:00:00.000Z'
 ) ON CONFLICT (srn) DO UPDATE SET
   name = EXCLUDED.name,
   phone = EXCLUDED.phone,
