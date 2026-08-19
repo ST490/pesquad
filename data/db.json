@@ -6,7 +6,7 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "SUFIYAN TATAGAR",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Male",
@@ -15,7 +15,7 @@
       "phone": "8050895979",
       "photo_url": "",
       "hackathon_count": 3,
-      "github_url": "",
+      "github_url": "https://github.com/ST490",
       "interests": [
         "Frontend",
         "Backend",
@@ -30,7 +30,8 @@
       "bio": "Full Stack developer eager to build innovative solutions for SIH 2026.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Full Stack Developer"
+        "Full Stack Developer",
+        "Team Lead"
       ],
       "created_at": "2026-08-14T20:35:30.654Z",
       "updated_at": "2026-08-14T20:35:54.679Z"
@@ -41,7 +42,7 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Mohammed Yusuf Ahmed",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Male",
@@ -55,7 +56,7 @@
         "Frontend",
         "Backend",
         "Full Stack",
-        "Cloud Computing"
+        "Cloud & DevOps"
       ],
       "skills": [
         "Next.js",
@@ -66,7 +67,7 @@
       "bio": "Experienced backend & systems architect looking for an enthusiastic team for SIH 2026.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Backend Developer",
+        "Backend Specialist",
         "Full Stack Developer"
       ],
       "created_at": "2026-08-14T21:00:00.000Z",
@@ -91,7 +92,7 @@
       "interests": [
         "Computer Vision",
         "Natural Language Processing",
-        "Robotics"
+        "IoT & Robotics"
       ],
       "skills": [
         "PyTorch",
@@ -103,7 +104,7 @@
       "looking_for_team": true,
       "preferred_roles": [
         "AI / ML Engineer",
-        "Hardware / IoT Specialist"
+        "Hardware / Embedded Systems Lead"
       ],
       "created_at": "2026-08-14T21:30:00.000Z",
       "updated_at": "2026-08-14T21:30:00.000Z"
@@ -122,12 +123,13 @@
       "email": "mohammad.safwaan@pes.edu",
       "phone": "8317452496",
       "photo_url": "",
-      "hackathon_count": 0,
+      "hackathon_count": 1,
       "github_url": "",
       "interests": [
         "Frontend",
         "Backend",
-        "IoT / Embedded"
+        "Embedded Systems",
+        "IoT & Robotics"
       ],
       "skills": [
         "Embedded C",
@@ -137,8 +139,8 @@
       "bio": "Ready to contribute frontend UI and IoT device integration for smart hardware problem statements.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Frontend Developer",
-        "Hardware / IoT Specialist"
+        "Full Stack Developer",
+        "Hardware / Embedded Systems Lead"
       ],
       "created_at": "2026-08-14T22:00:00.000Z",
       "updated_at": "2026-08-14T22:00:00.000Z"
@@ -149,34 +151,35 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "S BANUTEJA REDDY",
-      "department": "Computer Science and Engineering",
+      "department": "AI & Machine Learning",
       "branch": "AIML",
       "semester": 4,
       "gender": "Male",
       "campus": "RR Campus",
       "email": "banuteja.reddy@pes.edu",
-      "phone": "",
+      "phone": "9845012345",
       "photo_url": "",
-      "hackathon_count": 0,
+      "hackathon_count": 2,
       "github_url": "",
       "interests": [
-        "Frontend",
-        "Backend",
-        "Machine Learning"
+        "Machine Learning",
+        "Deep Learning",
+        "Backend"
       ],
       "skills": [
-        "TensorFlow",
         "Python",
-        "React"
+        "Scikit-Learn",
+        "TensorFlow",
+        "SQL"
       ],
-      "bio": "AI/ML enthusiast focused on predictive models and clean web interfaces for SIH 2026.",
+      "bio": "Focused on AI model training, predictive analytics, and scalable model deployment for SIH projects.",
       "looking_for_team": true,
       "preferred_roles": [
         "AI / ML Engineer",
-        "Backend Developer"
+        "Backend Specialist"
       ],
-      "created_at": "2026-08-14T22:30:00.000Z",
-      "updated_at": "2026-08-14T22:30:00.000Z"
+      "created_at": "2026-08-15T00:00:00.000Z",
+      "updated_at": "2026-08-15T00:00:00.000Z"
     },
     {
       "srn": "PES1UG25CS696",
@@ -184,90 +187,92 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Spandana B M",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Female",
       "campus": "RR Campus",
       "email": "spandana.bm@pes.edu",
-      "phone": "",
+      "phone": "9845112233",
       "photo_url": "",
-      "hackathon_count": 0,
-      "github_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/spandanabm",
       "interests": [
-        "Frontend",
         "UI/UX Design",
-        "Cloud Computing"
+        "Frontend",
+        "Mobile App (Flutter/React Native)"
       ],
       "skills": [
         "Figma",
         "React",
-        "CSS3",
-        "Tailwind"
+        "Tailwind CSS",
+        "Flutter"
       ],
-      "bio": "UI/UX Designer and Frontend developer passionate about building intuitive user-centric apps for SIH.",
+      "bio": "Passionate UI/UX designer and frontend developer. Experienced in designing accessible and sleek mobile/web products.",
       "looking_for_team": true,
       "preferred_roles": [
-        "UI / UX Designer",
-        "Frontend Developer"
+        "UI/UX Designer",
+        "Full Stack Developer"
       ],
-      "created_at": "2026-08-14T23:00:00.000Z",
-      "updated_at": "2026-08-14T23:00:00.000Z"
+      "created_at": "2026-08-15T07:30:00.000Z",
+      "updated_at": "2026-08-15T07:30:00.000Z"
     },
     {
       "srn": "PES1UG25CS716",
       "prn": "PES1202504716",
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
-      "name": "PESU Student (CS716)",
-      "department": "Computer Science and Engineering",
+      "name": "Chirag Kulkarni",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Male",
       "campus": "RR Campus",
-      "email": "pes1ug25cs716@pes.edu",
-      "phone": "",
+      "email": "chirag.kulkarni@pes.edu",
+      "phone": "9845223344",
       "photo_url": "",
-      "hackathon_count": 1,
-      "github_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/chiragkulkarni",
       "interests": [
-        "Frontend",
+        "Cloud & DevOps",
         "Backend",
-        "Mobile Development"
+        "Full Stack"
       ],
       "skills": [
-        "Flutter",
-        "TypeScript",
-        "Node.js"
+        "Docker",
+        "AWS",
+        "Node.js",
+        "Linux",
+        "Express"
       ],
-      "bio": "Full Stack & Mobile developer eager to build innovative solutions for SIH 2026.",
+      "bio": "DevOps enthusiast with practical experience in CI/CD pipelines, container orchestration, and microservices.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Full Stack Developer",
-        "Mobile Developer"
+        "Backend Specialist",
+        "Full Stack Developer"
       ],
       "created_at": "2026-08-15T08:00:00.000Z",
       "updated_at": "2026-08-15T08:00:00.000Z"
     },
     {
       "srn": "PES1UG25CS104",
-      "prn": "PES1202500104",
+      "prn": "PES1202501104",
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Ananya Sharma",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Female",
       "campus": "RR Campus",
       "email": "ananya.sharma@pes.edu",
-      "phone": "9845012345",
+      "phone": "9901234567",
       "photo_url": "",
       "hackathon_count": 5,
       "github_url": "https://github.com/ananyasharma",
       "interests": [
-        "Natural Language Processing",
         "Machine Learning",
+        "Natural Language Processing",
         "Full Stack"
       ],
       "skills": [
@@ -280,7 +285,7 @@
       "looking_for_team": true,
       "preferred_roles": [
         "AI / ML Engineer",
-        "Team Lead / PM"
+        "Team Lead"
       ],
       "created_at": "2026-08-15T08:30:00.000Z",
       "updated_at": "2026-08-15T08:30:00.000Z"
@@ -302,9 +307,9 @@
       "hackathon_count": 2,
       "github_url": "https://github.com/kavyaramesh",
       "interests": [
-        "IoT / Embedded",
-        "Robotics",
-        "Edge AI"
+        "Embedded Systems",
+        "IoT & Robotics",
+        "Hardware / Embedded Systems Lead"
       ],
       "skills": [
         "ESP32",
@@ -315,7 +320,7 @@
       "bio": "ECE hardware hacker building smart IoT sensors and edge computing devices for smart city and agri-tech challenges.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Hardware / IoT Specialist"
+        "Hardware / Embedded Systems Lead"
       ],
       "created_at": "2026-08-15T09:00:00.000Z",
       "updated_at": "2026-08-15T09:00:00.000Z"
@@ -326,20 +331,20 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Rohan Varma",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Male",
       "campus": "EC Campus",
       "email": "rohan.varma@pes.edu",
-      "phone": "",
+      "phone": "9845334455",
       "photo_url": "",
       "hackathon_count": 3,
       "github_url": "https://github.com/rohanvarma",
       "interests": [
-        "Cloud Computing",
+        "Cloud & DevOps",
         "Backend",
-        "DevOps"
+        "Data Engineering"
       ],
       "skills": [
         "AWS",
@@ -351,8 +356,8 @@
       "bio": "Cloud infra engineer passionate about building high-availability backends and scalable microservices architectures.",
       "looking_for_team": true,
       "preferred_roles": [
-        "DevOps / Cloud Architect",
-        "Backend Developer"
+        "Backend Specialist",
+        "Full Stack Developer"
       ],
       "created_at": "2026-08-15T09:30:00.000Z",
       "updated_at": "2026-08-15T09:30:00.000Z"
@@ -369,14 +374,14 @@
       "gender": "Female",
       "campus": "RR Campus",
       "email": "pooja.hegde@pes.edu",
-      "phone": "",
+      "phone": "9845445566",
       "photo_url": "",
       "hackathon_count": 2,
-      "github_url": "",
+      "github_url": "https://github.com/poojahegde",
       "interests": [
-        "Data Science",
-        "Healthcare Tech",
-        "Bioinformatics"
+        "Data Engineering",
+        "Machine Learning",
+        "Domain / Pitch Specialist"
       ],
       "skills": [
         "BioPython",
@@ -387,8 +392,8 @@
       "bio": "Biotech student bridging computational biology with health-tech AI solutions for SIH MedTech problem statements.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Data Scientist / Analyst",
-        "Domain Specialist"
+        "Domain / Pitch Specialist",
+        "AI / ML Engineer"
       ],
       "created_at": "2026-08-15T10:00:00.000Z",
       "updated_at": "2026-08-15T10:00:00.000Z"
@@ -399,7 +404,7 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Aditya Kulkarni",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Male",
@@ -411,7 +416,7 @@
       "github_url": "https://github.com/adityakulkarni",
       "interests": [
         "Cybersecurity",
-        "Blockchain / Web3",
+        "Blockchain & Web3",
         "Backend"
       ],
       "skills": [
@@ -423,8 +428,8 @@
       "bio": "Smart contract auditor and security researcher. Keen on Web3, zero-knowledge proofs, and secure digital identity.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Blockchain / Web3 Dev",
-        "Security Specialist"
+        "Backend Specialist",
+        "Team Lead"
       ],
       "created_at": "2026-08-15T10:30:00.000Z",
       "updated_at": "2026-08-15T10:30:00.000Z"
@@ -435,33 +440,33 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Tanvi Deshmukh",
-      "department": "Computer Science and Engineering",
+      "department": "Computer Science & Engineering",
       "branch": "CSE",
       "semester": 4,
       "gender": "Female",
       "campus": "EC Campus",
       "email": "tanvi.deshmukh@pes.edu",
-      "phone": "",
+      "phone": "9845556677",
       "photo_url": "",
       "hackathon_count": 1,
-      "github_url": "",
+      "github_url": "https://github.com/tanvideshmukh",
       "interests": [
-        "AR / VR / XR",
+        "AR / VR",
         "Frontend",
-        "Game Development"
+        "UI/UX Design"
       ],
       "skills": [
         "Three.js",
         "Unity",
         "WebGL",
         "React",
-        "Tailwind"
+        "Tailwind CSS"
       ],
       "bio": "Creative 3D web developer building immersive spatial computing and AR/VR web experiences for SIH.",
       "looking_for_team": true,
       "preferred_roles": [
         "Frontend Developer",
-        "UI / UX Designer"
+        "UI/UX Designer"
       ],
       "created_at": "2026-08-15T11:00:00.000Z",
       "updated_at": "2026-08-15T11:00:00.000Z"
@@ -472,20 +477,20 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Deepak Sundaram",
-      "department": "Data Science",
-      "branch": "DS",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
       "semester": 4,
       "gender": "Male",
       "campus": "RR Campus",
       "email": "deepak.sundaram@pes.edu",
-      "phone": "",
+      "phone": "9845667788",
       "photo_url": "",
       "hackathon_count": 2,
       "github_url": "https://github.com/deepaksundaram",
       "interests": [
         "Deep Learning",
         "Computer Vision",
-        "MLOps"
+        "Cloud & DevOps"
       ],
       "skills": [
         "TensorFlow",
@@ -498,7 +503,7 @@
       "looking_for_team": true,
       "preferred_roles": [
         "AI / ML Engineer",
-        "Backend Developer"
+        "Backend Specialist"
       ],
       "created_at": "2026-08-15T11:30:00.000Z",
       "updated_at": "2026-08-15T11:30:00.000Z"
@@ -509,8 +514,8 @@
       "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
       "salt": "6ba6e622de36c13856a706ed64d09842",
       "name": "Meera Nandakumar",
-      "department": "Data Science",
-      "branch": "DS",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
       "semester": 4,
       "gender": "Female",
       "campus": "RR Campus",
@@ -520,9 +525,9 @@
       "hackathon_count": 3,
       "github_url": "https://github.com/meerananda",
       "interests": [
-        "Predictive Analytics",
+        "Data Engineering",
         "Full Stack",
-        "Data Science"
+        "Machine Learning"
       ],
       "skills": [
         "Pandas",
@@ -534,11 +539,933 @@
       "bio": "Data scientist & full stack engineer experienced in building data-driven dashboards and smart recommendation systems.",
       "looking_for_team": true,
       "preferred_roles": [
-        "Data Scientist / Analyst",
-        "Full Stack Developer"
+        "Full Stack Developer",
+        "AI / ML Engineer"
       ],
       "created_at": "2026-08-15T12:00:00.000Z",
       "updated_at": "2026-08-15T12:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG24CS201",
+      "prn": "PES1202401201",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Aarav Patel",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 6,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "aarav.patel@pes.edu",
+      "phone": "9845778899",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/aaravpatel",
+      "interests": [
+        "Backend",
+        "Cloud & DevOps",
+        "Data Engineering"
+      ],
+      "skills": [
+        "Go",
+        "gRPC",
+        "Apache Kafka",
+        "Redis",
+        "PostgreSQL"
+      ],
+      "bio": "Distributed systems engineer focused on fault-tolerant message queues, microservices, and high-throughput real-time pipelines.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Backend Specialist",
+        "Team Lead"
+      ],
+      "created_at": "2026-08-15T12:30:00.000Z",
+      "updated_at": "2026-08-15T12:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG24AM112",
+      "prn": "PES1202402112",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Sneha Ranganathan",
+      "department": "AI & Machine Learning",
+      "branch": "AIML",
+      "semester": 6,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "sneha.ranga@pes.edu",
+      "phone": "9845889900",
+      "photo_url": "",
+      "hackathon_count": 5,
+      "github_url": "https://github.com/sneharanga",
+      "interests": [
+        "Natural Language Processing",
+        "Deep Learning",
+        "Machine Learning"
+      ],
+      "skills": [
+        "LLMs",
+        "Hugging Face",
+        "RAG",
+        "LangGraph",
+        "Python"
+      ],
+      "bio": "Specialized in multi-agent generative AI, retrieval-augmented generation (RAG), and fine-tuning open-source LLMs.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Team Lead"
+      ],
+      "created_at": "2026-08-15T13:00:00.000Z",
+      "updated_at": "2026-08-15T13:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EC340",
+      "prn": "PES1202503340",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Varun Rao",
+      "department": "Electronics & Communication",
+      "branch": "ECE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "EC Campus",
+      "email": "varun.rao@pes.edu",
+      "phone": "9845990011",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/varunrao",
+      "interests": [
+        "Embedded Systems",
+        "IoT & Robotics",
+        "Hardware / Embedded Systems Lead"
+      ],
+      "skills": [
+        "Verilog",
+        "STM32",
+        "FreeRTOS",
+        "C++",
+        "Circuit Design"
+      ],
+      "bio": "VLSI and RTOS developer passionate about firmware engineering, FPGA accelerators, and hardware-software co-design.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead"
+      ],
+      "created_at": "2026-08-15T13:30:00.000Z",
+      "updated_at": "2026-08-15T13:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG23CS088",
+      "prn": "PES1202301088",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Priya Sundaresan",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 8,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "priya.sundar@pes.edu",
+      "phone": "9880112233",
+      "photo_url": "",
+      "hackathon_count": 6,
+      "github_url": "https://github.com/priyasundar",
+      "interests": [
+        "Full Stack",
+        "Cloud & DevOps",
+        "UI/UX Design"
+      ],
+      "skills": [
+        "Next.js 14",
+        "GraphQL",
+        "Docker",
+        "Google Cloud",
+        "TypeScript"
+      ],
+      "bio": "Senior full-stack architect & veteran SIH finalist. Loves mentoring teams and crafting rapid production-ready prototypes.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Team Lead",
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-15T14:00:00.000Z",
+      "updated_at": "2026-08-15T14:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25ME105",
+      "prn": "PES1202502105",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Nihal Gowda",
+      "department": "Mechanical Engineering",
+      "branch": "ME",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "nihal.gowda@pes.edu",
+      "phone": "9880223344",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "https://github.com/nihalgowda",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Domain / Pitch Specialist"
+      ],
+      "skills": [
+        "SolidWorks",
+        "ANSYS",
+        "ROS 2",
+        "Python",
+        "CAN Bus"
+      ],
+      "bio": "Robotics kinematics designer and CAD specialist ready to build autonomous mobile robots (AMR) and smart agritech rovers.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead",
+        "Domain / Pitch Specialist"
+      ],
+      "created_at": "2026-08-15T14:30:00.000Z",
+      "updated_at": "2026-08-15T14:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25BT044",
+      "prn": "PES1202503044",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Divya Chandrashekar",
+      "department": "Biotechnology",
+      "branch": "BT",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "divya.chandra@pes.edu",
+      "phone": "9880334455",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/divyachandra",
+      "interests": [
+        "Data Engineering",
+        "Machine Learning",
+        "Domain / Pitch Specialist"
+      ],
+      "skills": [
+        "BioConductor",
+        "Python",
+        "Nextflow",
+        "PyMOL",
+        "Bioinformatics"
+      ],
+      "bio": "Computational biologist passionate about protein folding prediction, genomics pipelines, and drug discovery AI tools.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Domain / Pitch Specialist",
+        "AI / ML Engineer"
+      ],
+      "created_at": "2026-08-15T15:00:00.000Z",
+      "updated_at": "2026-08-15T15:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EE120",
+      "prn": "PES1202504120",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Harish Venkatesh",
+      "department": "Electrical & Electronics",
+      "branch": "EEE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "EC Campus",
+      "email": "harish.venkat@pes.edu",
+      "phone": "9880445566",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/harishvenkat",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Cloud & DevOps"
+      ],
+      "skills": [
+        "MATLAB/Simulink",
+        "ESP32",
+        "MQTT",
+        "KiCad",
+        "Power Electronics"
+      ],
+      "bio": "Smart grid and green energy developer with experience in microgrid telemetry, telemetry sensors, and embedded control.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead"
+      ],
+      "created_at": "2026-08-15T15:30:00.000Z",
+      "updated_at": "2026-08-15T15:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG26CS012",
+      "prn": "PES1202601012",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Ishaan Gupta",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 2,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "ishaan.gupta@pes.edu",
+      "phone": "9880556677",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "https://github.com/ishaangupta",
+      "interests": [
+        "Backend",
+        "Full Stack",
+        "Data Engineering"
+      ],
+      "skills": [
+        "C++",
+        "Data Structures",
+        "Algorithms",
+        "Python",
+        "React"
+      ],
+      "bio": "First year competitive programmer and enthusiastic builder excited to write hyper-optimized algorithms for SIH.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Backend Specialist",
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-15T16:00:00.000Z",
+      "updated_at": "2026-08-15T16:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG24DS075",
+      "prn": "PES1202403075",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Sanjana Krishna",
+      "department": "AI & Machine Learning",
+      "branch": "AIML",
+      "semester": 6,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "sanjana.krishna@pes.edu",
+      "phone": "9880667788",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/sanjanakrishna",
+      "interests": [
+        "Computer Vision",
+        "Deep Learning",
+        "IoT & Robotics"
+      ],
+      "skills": [
+        "YOLOv8",
+        "DeepStream",
+        "PyTorch",
+        "C++",
+        "OpenCV"
+      ],
+      "bio": "Computer vision specialist working on low-latency video surveillance, automated inspection, and traffic analytics systems.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Team Lead"
+      ],
+      "created_at": "2026-08-15T16:30:00.000Z",
+      "updated_at": "2026-08-15T16:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25DE018",
+      "prn": "PES1202501018",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Aniket Joshi",
+      "department": "Design & Architecture",
+      "branch": "DES",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "aniket.joshi@pes.edu",
+      "phone": "9880778899",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/aniketjoshi",
+      "interests": [
+        "UI/UX Design",
+        "Frontend",
+        "AR / VR"
+      ],
+      "skills": [
+        "Figma",
+        "Framer",
+        "Blender",
+        "User Research",
+        "Design Systems"
+      ],
+      "bio": "Product designer focusing on human-centered UX design, design sprints, high-fidelity prototypes, and design systems.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "UI/UX Designer",
+        "Domain / Pitch Specialist"
+      ],
+      "created_at": "2026-08-15T17:00:00.000Z",
+      "updated_at": "2026-08-15T17:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS889",
+      "prn": "PES1202504889",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Riya Sen",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "riya.sen@pes.edu",
+      "phone": "9880889900",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/riyasen",
+      "interests": [
+        "Mobile App (Flutter/React Native)",
+        "Frontend",
+        "UI/UX Design"
+      ],
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Kotlin",
+        "REST APIs"
+      ],
+      "bio": "Cross-platform mobile developer with 3 production app releases. Building responsive offline-first mobile apps for SIH.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Full Stack Developer",
+        "UI/UX Designer"
+      ],
+      "created_at": "2026-08-15T17:30:00.000Z",
+      "updated_at": "2026-08-15T17:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG24EE082",
+      "prn": "PES1202402082",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Karthik Sridhar",
+      "department": "Electrical & Electronics",
+      "branch": "EEE",
+      "semester": 6,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "karthik.sridhar@pes.edu",
+      "phone": "9880990011",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/karthiksridhar",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Hardware / Embedded Systems Lead"
+      ],
+      "skills": [
+        "MATLAB",
+        "Altium Designer",
+        "Embedded C",
+        "BLE",
+        "Motor Drivers"
+      ],
+      "bio": "EV powertrains, BMS (Battery Management Systems), and high-frequency power electronics engineer ready for EV hardware themes.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead"
+      ],
+      "created_at": "2026-08-15T18:00:00.000Z",
+      "updated_at": "2026-08-15T18:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG23EC410",
+      "prn": "PES1202304410",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Shweta Nambiar",
+      "department": "Electronics & Communication",
+      "branch": "ECE",
+      "semester": 8,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "shweta.nambiar@pes.edu",
+      "phone": "9916001122",
+      "photo_url": "",
+      "hackathon_count": 5,
+      "github_url": "https://github.com/shwetanambiar",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Cloud & DevOps"
+      ],
+      "skills": [
+        "LoRaWAN",
+        "Zigbee",
+        "Embedded C",
+        "Python",
+        "AWS IoT Core"
+      ],
+      "bio": "Long-range low-power sensor networks and 5G edge computing researcher. Experienced leader with 5 national hackathon podiums.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Team Lead",
+        "Hardware / Embedded Systems Lead"
+      ],
+      "created_at": "2026-08-15T18:30:00.000Z",
+      "updated_at": "2026-08-15T18:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25AM204",
+      "prn": "PES1202502204",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Pranav Nair",
+      "department": "AI & Machine Learning",
+      "branch": "AIML",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "pranav.nair@pes.edu",
+      "phone": "9916112233",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/pranavnair",
+      "interests": [
+        "Deep Learning",
+        "Machine Learning",
+        "Backend"
+      ],
+      "skills": [
+        "Stable-Baselines3",
+        "PyTorch",
+        "OpenAI Gym",
+        "FastAPI",
+        "NumPy"
+      ],
+      "bio": "Reinforcement learning enthusiast building autonomous decision-making agents for smart traffic and logistics optimization.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Backend Specialist"
+      ],
+      "created_at": "2026-08-15T19:00:00.000Z",
+      "updated_at": "2026-08-15T19:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS612",
+      "prn": "PES1202503612",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Natasha D'Souza",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "natasha.dsouza@pes.edu",
+      "phone": "9916223344",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/natashadsouza",
+      "interests": [
+        "Cybersecurity",
+        "Cloud & DevOps",
+        "Backend"
+      ],
+      "skills": [
+        "OWASP",
+        "Kubernetes Security",
+        "Go",
+        "Wireshark",
+        "Docker"
+      ],
+      "bio": "DevSecOps & web security enthusiast ensuring that SIH systems are built with zero vulnerabilities and strong cryptography.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Backend Specialist",
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-15T19:30:00.000Z",
+      "updated_at": "2026-08-15T19:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG26AM045",
+      "prn": "PES1202602045",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Siddharth Menon",
+      "department": "AI & Machine Learning",
+      "branch": "AIML",
+      "semester": 2,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "siddharth.menon@pes.edu",
+      "phone": "9916334455",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "https://github.com/siddharthmenon",
+      "interests": [
+        "Frontend",
+        "Machine Learning",
+        "UI/UX Design"
+      ],
+      "skills": [
+        "TypeScript",
+        "React",
+        "Three.js",
+        "OpenAI API",
+        "Tailwind CSS"
+      ],
+      "bio": "Freshman passionate about creative frontend coding, interactive 3D canvases, and AI-assisted conversational interfaces.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Frontend Developer",
+        "UI/UX Designer"
+      ],
+      "created_at": "2026-08-15T20:00:00.000Z",
+      "updated_at": "2026-08-15T20:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG24ME067",
+      "prn": "PES1202403067",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Bhavana Reddy",
+      "department": "Mechanical Engineering",
+      "branch": "ME",
+      "semester": 6,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "bhavana.reddy@pes.edu",
+      "phone": "9916445566",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/bhavanareddy",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Computer Vision"
+      ],
+      "skills": [
+        "PX4 Autopilot",
+        "ArduPilot",
+        "ROS",
+        "SolidWorks",
+        "3D Printing"
+      ],
+      "bio": "Drone & UAV flight dynamics engineer with hands-on experience building autonomous mapping and search-and-rescue quadcopters.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead",
+        "Team Lead"
+      ],
+      "created_at": "2026-08-15T20:30:00.000Z",
+      "updated_at": "2026-08-15T20:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25CS920",
+      "prn": "PES1202504920",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Tejas Nayak",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "tejas.nayak@pes.edu",
+      "phone": "9916556677",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/tejasnayak",
+      "interests": [
+        "Blockchain & Web3",
+        "Full Stack",
+        "Backend"
+      ],
+      "skills": [
+        "Solidity",
+        "IPFS",
+        "Ethereum",
+        "Wagmi",
+        "Next.js"
+      ],
+      "bio": "Decentralized application developer passionate about verifiable credentials, governance DAOs, and transparent public registries.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Full Stack Developer",
+        "Backend Specialist"
+      ],
+      "created_at": "2026-08-15T21:00:00.000Z",
+      "updated_at": "2026-08-15T21:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25DE033",
+      "prn": "PES1202502033",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Aishwarya Pillai",
+      "department": "Design & Architecture",
+      "branch": "DES",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "aishwarya.pillai@pes.edu",
+      "phone": "9916667788",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/aishwaryapillai",
+      "interests": [
+        "UI/UX Design",
+        "AR / VR",
+        "Frontend"
+      ],
+      "skills": [
+        "Figma",
+        "Spline 3D",
+        "Design Tokens",
+        "Tailwind CSS",
+        "Design Thinking"
+      ],
+      "bio": "Visual and motion designer creating stunning pitch decks, micro-interactions, and high-impact UI themes for winning hackathon submissions.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "UI/UX Designer",
+        "Domain / Pitch Specialist"
+      ],
+      "created_at": "2026-08-15T21:30:00.000Z",
+      "updated_at": "2026-08-15T21:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG23CS150",
+      "prn": "PES1202302150",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Vikramaditya Singh",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 8,
+      "gender": "Male",
+      "campus": "EC Campus",
+      "email": "vikram.singh@pes.edu",
+      "phone": "9916778899",
+      "photo_url": "",
+      "hackathon_count": 5,
+      "github_url": "https://github.com/vikramadityasingh",
+      "interests": [
+        "Cloud & DevOps",
+        "Backend",
+        "Data Engineering"
+      ],
+      "skills": [
+        "AWS Solutions Architect",
+        "Terraform",
+        "Kubernetes",
+        "Go",
+        "Prometheus"
+      ],
+      "bio": "Final year cloud infrastructure specialist and 5-time hackathon organizer with extensive experience architecting production grade systems.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Team Lead",
+        "Backend Specialist"
+      ],
+      "created_at": "2026-08-15T22:00:00.000Z",
+      "updated_at": "2026-08-15T22:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG25BT032",
+      "prn": "PES1202504032",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Keerthi Prasanna",
+      "department": "Biotechnology",
+      "branch": "BT",
+      "semester": 4,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "keerthi.prasanna@pes.edu",
+      "phone": "9916889900",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/keerthiprasanna",
+      "interests": [
+        "Domain / Pitch Specialist",
+        "IoT & Robotics",
+        "Data Engineering"
+      ],
+      "skills": [
+        "Microfluidics",
+        "Python",
+        "OpenCV",
+        "Arduino",
+        "Biosensors"
+      ],
+      "bio": "Biotech researcher building low-cost optical biosensors, water quality analysis rigs, and field diagnostics kits.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Domain / Pitch Specialist",
+        "Hardware / Embedded Systems Lead"
+      ],
+      "created_at": "2026-08-15T22:30:00.000Z",
+      "updated_at": "2026-08-15T22:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EC190",
+      "prn": "PES1202502190",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Rahul B",
+      "department": "Electronics & Communication",
+      "branch": "ECE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "rahul.b@pes.edu",
+      "phone": "9916990011",
+      "photo_url": "",
+      "hackathon_count": 2,
+      "github_url": "https://github.com/rahulb-ece",
+      "interests": [
+        "Embedded Systems",
+        "IoT & Robotics",
+        "Deep Learning"
+      ],
+      "skills": [
+        "DSP",
+        "C++",
+        "TinyML",
+        "MATLAB",
+        "ARM Cortex"
+      ],
+      "bio": "DSP and Edge AI engineer building voice-recognition trigger words and real-time audio anomaly detectors on microcontrollers.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead",
+        "AI / ML Engineer"
+      ],
+      "created_at": "2026-08-15T23:00:00.000Z",
+      "updated_at": "2026-08-15T23:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG24CS512",
+      "prn": "PES1202404512",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Samiksha Rao",
+      "department": "Computer Science & Engineering",
+      "branch": "CSE",
+      "semester": 6,
+      "gender": "Female",
+      "campus": "EC Campus",
+      "email": "samiksha.rao@pes.edu",
+      "phone": "9920001122",
+      "photo_url": "",
+      "hackathon_count": 3,
+      "github_url": "https://github.com/samiksharao",
+      "interests": [
+        "Data Engineering",
+        "Deep Learning",
+        "Backend"
+      ],
+      "skills": [
+        "CUDA",
+        "C++",
+        "Python",
+        "OpenMP",
+        "GPU Profiling"
+      ],
+      "bio": "High performance GPU programmer accelerating matrix calculations, parallel graph traversal, and deep learning training loops.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Backend Specialist"
+      ],
+      "created_at": "2026-08-15T23:30:00.000Z",
+      "updated_at": "2026-08-15T23:30:00.000Z"
+    },
+    {
+      "srn": "PES1UG25EE095",
+      "prn": "PES1202501095",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Gautham Krishnan",
+      "department": "Electrical & Electronics",
+      "branch": "EEE",
+      "semester": 4,
+      "gender": "Male",
+      "campus": "RR Campus",
+      "email": "gautham.krishnan@pes.edu",
+      "phone": "9920112233",
+      "photo_url": "",
+      "hackathon_count": 1,
+      "github_url": "https://github.com/gauthamkrishnan",
+      "interests": [
+        "IoT & Robotics",
+        "Embedded Systems",
+        "Full Stack"
+      ],
+      "skills": [
+        "Raspberry Pi",
+        "Yocto",
+        "MQTT",
+        "Python",
+        "Node-RED"
+      ],
+      "bio": "Embedded Linux hacker building industrial IoT gateways, edge telemetry data collectors, and smart building energy meters.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "Hardware / Embedded Systems Lead",
+        "Full Stack Developer"
+      ],
+      "created_at": "2026-08-16T00:00:00.000Z",
+      "updated_at": "2026-08-16T00:00:00.000Z"
+    },
+    {
+      "srn": "PES1UG24AM310",
+      "prn": "PES1202403310",
+      "passwordHash": "a905fd4ab895a6877c0d522b42601694da19b56be6d0d644c2cd6ee5265ebc1c90ec2e15058b9eb06577c0e9cf0e872a6eb9d67a715087f2fd84ae839e6c0f5b",
+      "salt": "6ba6e622de36c13856a706ed64d09842",
+      "name": "Shruti Bhatt",
+      "department": "AI & Machine Learning",
+      "branch": "AIML",
+      "semester": 6,
+      "gender": "Female",
+      "campus": "RR Campus",
+      "email": "shruti.bhatt@pes.edu",
+      "phone": "9920223344",
+      "photo_url": "",
+      "hackathon_count": 4,
+      "github_url": "https://github.com/shrutibhatt",
+      "interests": [
+        "Deep Learning",
+        "Natural Language Processing",
+        "Full Stack"
+      ],
+      "skills": [
+        "OpenAI Whisper",
+        "Librosa",
+        "PyTorch",
+        "FastAPI",
+        "React"
+      ],
+      "bio": "Multimodal AI specialist building automated transcription, real-time accent translation, and speech-to-text assistive tech.",
+      "looking_for_team": true,
+      "preferred_roles": [
+        "AI / ML Engineer",
+        "Team Lead"
+      ],
+      "created_at": "2026-08-16T00:30:00.000Z",
+      "updated_at": "2026-08-16T00:30:00.000Z"
     }
   ],
   "posts": [],

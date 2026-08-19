@@ -317,7 +317,9 @@ apiRouter.get('/profiles', optionalAuthMiddleware, async (req: AuthenticatedRequ
     }
 
     if (department && department !== 'All' && typeof department === 'string') {
-      users = users.filter((u) => u.department.toLowerCase() === department.toLowerCase());
+      const norm = (s: string) => s.toLowerCase().replace(/\s*&\s*/g, ' and ').trim();
+      const targetDept = norm(department);
+      users = users.filter((u) => norm(u.department) === targetDept);
     }
 
     if (semester && semester !== 'All') {
@@ -336,7 +338,15 @@ apiRouter.get('/profiles', optionalAuthMiddleware, async (req: AuthenticatedRequ
     }
 
     if (interest && interest !== 'All' && typeof interest === 'string') {
-      users = users.filter((u) => u.interests?.includes(interest));
+      const targetInterest = interest.toLowerCase().trim();
+      users = users.filter((u) =>
+        u.interests?.some(
+          (i) =>
+            i.toLowerCase() === targetInterest ||
+            i.toLowerCase().includes(targetInterest) ||
+            targetInterest.includes(i.toLowerCase())
+        )
+      );
     }
 
     users.sort((a, b) => {

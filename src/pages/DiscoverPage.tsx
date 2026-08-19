@@ -115,8 +115,11 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
         }
 
         // Department filter
-        if (selectedDept !== 'All' && profile.department !== selectedDept) {
-          return false;
+        if (selectedDept !== 'All') {
+          const norm = (s: string) => s.toLowerCase().replace(/\s*&\s*/g, ' and ').trim();
+          if (norm(profile.department) !== norm(selectedDept)) {
+            return false;
+          }
         }
 
         // Semester filter
@@ -135,8 +138,17 @@ export const DiscoverPage: React.FC<DiscoverPageProps> = ({
         }
 
         // Interest filter
-        if (selectedInterest !== 'All' && !profile.interests?.includes(selectedInterest)) {
-          return false;
+        if (selectedInterest !== 'All') {
+          const targetInterest = selectedInterest.toLowerCase().trim();
+          const matchesInterest = profile.interests?.some(
+            (i) =>
+              i.toLowerCase() === targetInterest ||
+              i.toLowerCase().includes(targetInterest) ||
+              targetInterest.includes(i.toLowerCase())
+          );
+          if (!matchesInterest) {
+            return false;
+          }
         }
 
         return true;
